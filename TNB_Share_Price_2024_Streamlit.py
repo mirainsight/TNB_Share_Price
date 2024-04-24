@@ -31,6 +31,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+
+
 
  
 gifs = ["giphy.gif", "ysb.gif", "smol-illegally-smol-cat.gif", 
@@ -71,7 +76,14 @@ if st.button('Calculate share price'):
 
         url = "https://www.insage.com.my/ir/tenaga/priceticker.aspx"
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'}
-        data = requests.get(url, verify=False, headers=headers).text
+        
+        session = requests.Session()
+        retry = Retry(connect=3, backoff_factor=0.5)
+        adapter = HTTPAdapter(max_retries=retry)
+        session.mount('http://', adapter)
+        session.mount('https://', adapter)
+        data = session.get(url, verify=False, headers=headers).text
+
         soup = BeautifulSoup(data, 'html.parser')
 
         # Creating list with all tables
