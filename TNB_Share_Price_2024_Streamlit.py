@@ -63,6 +63,8 @@ if st.button('Calculate share price'):
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--ignore-ssl-errors')
         options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
+     
         driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),
             options=options)
 
