@@ -112,7 +112,7 @@ if st.button('Calculate share price'):
 
 
         driver.get('https://www.investing.com/indices/msci-ac-asia-pacific')
-        delay = 3 # seconds
+        delay = 20 # seconds
         myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.CSS_SELECTOR, "[data-test='prevClose']")))
         MSCI_prev_price = driver.find_element(By.CSS_SELECTOR, "[data-test='prevClose']").text
         MSCI_prev_price = float(MSCI_prev_price.replace(',', ''))
