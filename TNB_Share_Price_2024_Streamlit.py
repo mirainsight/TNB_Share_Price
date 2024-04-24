@@ -24,6 +24,9 @@ import time as t
 import clipboard
 import pandas as pd
 import random 
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
  
 gifs = ["giphy.gif", "ysb.gif", "smol-illegally-smol-cat.gif", 
 "cool-fun.gif", "mcdo-cat-meme.gif", "unhand-me-wiggle-cat.gif",
@@ -54,7 +57,7 @@ if st.button('Calculate share price'):
         options.add_argument('--headless')
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--ignore-ssl-errors')
-        driver = webdriver.Chrome(
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),
             options=options)
 
 
