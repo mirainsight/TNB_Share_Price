@@ -1,11 +1,8 @@
 streamlit
 requests
 bs4
-urllib3.exceptions
 urllib3
 selenium
-selenium.webdriver.chrome.options
-selenium.webdriver.common.by
 datetime
 time
 pandas
