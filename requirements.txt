@@ -6,3 +6,5 @@ selenium
 datetime
 pandas
 clipboard
+seleniumbase
+webdriver-manager
