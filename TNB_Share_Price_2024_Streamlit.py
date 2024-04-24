@@ -225,7 +225,8 @@ if st.button('Calculate share price'):
                                 #'TNB_Share_Price_Close', 'TNB_Volume_Close', 'KLCI_Close', 'MSCI_Close'])
 
         today_date = datetime.now().strftime(format = '%A')
-        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(0,0), time(13,30))): 
+        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12,30), time(13,30))): 
+            print('hi')
             if not (df == datetime.now().strftime(format = '%#d/%#m/%Y')).any().any():
                 info  = {'Date':datetime.now().strftime(format = '%#d/%#m/%Y'), 
                         'TNB_Share_Price_Day':TNB_curr_price, 
@@ -235,6 +236,7 @@ if st.button('Calculate share price'):
                 df = pd.concat([df, pd.DataFrame(info, index=[0])], ignore_index=True)
 
         if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(14,0), time(23,59))):
+            print('hello')
             if pd.isnull(df.loc[df[df['Date'] == datetime.now().strftime(format = '%#d/%#m/%Y')].index[0], "TNB_Share_Price_Close"]):
                 df.loc[df['Date'] == datetime.now().strftime(format = '%#d/%#m/%Y'), 'TNB_Share_Price_Close'] = TNB_curr_price
                 df.loc[df['Date'] == datetime.now().strftime(format = '%#d/%#m/%Y'), 'TNB_Volume_Close'] = current_volume
