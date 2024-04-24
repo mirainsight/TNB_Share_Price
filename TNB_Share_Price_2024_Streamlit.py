@@ -25,10 +25,10 @@ import clipboard
 import pandas as pd
 import random 
  
-gifs = ["C:/Users/miracle.wong/Downloads/giphy.gif", "C:/Users/miracle.wong/Downloads/ysb.gif", "C:/Users/miracle.wong/Downloads/smol-illegally-smol-cat.gif", 
-"C:/Users/miracle.wong/Downloads/cool-fun.gif", r"C:\Users\miracle.wong\Downloads\mcdo-cat-meme.gif", r"C:\Users\miracle.wong\Downloads\unhand-me-wiggle-cat.gif",
-r"C:\Users\miracle.wong\Downloads\quit.gif", r"C:\Users\miracle.wong\Downloads\shocked-shocked-cat.gif", r"C:\Users\miracle.wong\Downloads\santa-christmas.gif",
-r"C:\Users\miracle.wong\Downloads\fat-cat-laser-eyes.gif"]
+gifs = ["giphy.gif", "ysb.gif", "smol-illegally-smol-cat.gif", 
+"cool-fun.gif", "mcdo-cat-meme.gif", "unhand-me-wiggle-cat.gif",
+"quit.gif", "shocked-shocked-cat.gif", "santa-christmas.gif",
+"fat-cat-laser-eyes.gif"]
 
 n=random.randint(0,len(gifs)-1) 
 
@@ -209,7 +209,7 @@ if st.button('Calculate share price'):
         
         st.write("Saving my work into Excel... it only took %s seconds..." % round(t.time() - start_time1, 0))
         start_time1 = t.time()
-        df = pd.read_csv(r"C:\Users\miracle.wong\OneDrive - Khazanah Nasional Berhad\Desktop\TNB_Share_Price_2024_Streamlit.csv")
+        df = pd.read_csv(r"TNB_Share_Price_2024_Streamlit.csv")
         #df = pd.DataFrame(columns=['Date','TNB_Share_Price_Day', 'TNB_Volume_Day', 'KLCI_Day', 'MSCI_Day',
                                 #'TNB_Share_Price_Close', 'TNB_Volume_Close', 'KLCI_Close', 'MSCI_Close'])
 
@@ -230,7 +230,7 @@ if st.button('Calculate share price'):
                 df.loc[df['Date'] == datetime.now().strftime(format = '%#d/%#m/%Y'), 'KLCI_Close'] = KLCI_curr_price
                 df.loc[df['Date'] == datetime.now().strftime(format = '%#d/%#m/%Y'), 'MSCI_Close'] = MSCI_curr_price
 
-        df.to_csv(r"C:\Users\miracle.wong\OneDrive - Khazanah Nasional Berhad\Desktop\TNB_Share_Price_2024_Streamlit.csv", index=False)
+        df.to_csv("TNB_Share_Price_2024_Streamlit.csv", index=False)
         
         st.write("Done! Only took %s seconds..." % round(t.time() - start_time, 0))
 
