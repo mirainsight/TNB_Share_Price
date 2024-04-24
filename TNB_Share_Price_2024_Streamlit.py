@@ -55,9 +55,7 @@ if st.button('Calculate share price'):
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--ignore-ssl-errors')
         driver = webdriver.Chrome(
-            options=options,
-            # ...
-        )
+            options=options)
 
 
         url = "https://www.insage.com.my/ir/tenaga/priceticker.aspx"
