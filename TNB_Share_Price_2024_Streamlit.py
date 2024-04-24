@@ -248,7 +248,7 @@ if st.button('Calculate share price'):
                         'MSCI_Day':MSCI_curr_price}
                 df = pd.concat([df, pd.DataFrame(info, index=[0])], ignore_index=True)
 
-        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(14,0), time(23,59))):
+        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17,30), time(23,59))):
             print('hello')
             if pd.isnull(df.loc[df[df['Date'] == datetime.now().strftime(format = '%#d/%#m/%Y')].index[0], "TNB_Share_Price_Close"]):
                 df.loc[df['Date'] == datetime.now().strftime(format = '%#d/%#m/%Y'), 'TNB_Share_Price_Close'] = TNB_curr_price
