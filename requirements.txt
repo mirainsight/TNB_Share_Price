@@ -1,7 +1,7 @@
 streamlit
 requests
 bs4
-from urllib3.exceptions
+urllib3.exceptions
 urllib3
 selenium
 selenium.webdriver.chrome.options
