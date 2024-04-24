@@ -81,13 +81,14 @@ if st.button('Calculate share price'):
         TNB_share_price_curr = soup.find('table', class_='table table-hover mt10')
         TNB_curr_price = float(TNB_share_price_curr.tbody.find_all('td')[2].text.strip())
 
+        driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
+        TNB_share_price_prev = driver.find_element(By.CSS_SELECTOR, "[data-test='prevClose']").text
+        TNB_prev_price = float(TNB_share_price_prev.replace(',', ''))
 
-        TNB_share_price_prev = soup.find('div', class_='col-sm-6 pt10')
-        TNB_prev_price = float(TNB_share_price_prev.find_all('th')[0].text.strip())
-
-        TNB_volume = soup.find('div', class_='col-sm-6 mt10')
-        current_volume = TNB_volume.tbody.find_all('th')[0].text.strip()
-        current_volume = int(current_volume.replace(',', ''))/(10**6)
+     
+        driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
+        TNB_volume = driver.find_element(By.CSS_SELECTOR, "[data-test='volume']").text
+        current_volume = int(TNB_volume.replace(',', ''))/(10**6)
 
 
 
