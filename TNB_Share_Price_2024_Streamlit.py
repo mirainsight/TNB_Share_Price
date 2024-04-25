@@ -196,11 +196,14 @@ if st.button('Calculate share price'):
             # If check time is not given, default to current UTC time
             check_time = check_time or datetime.now(timezone('Asia/Singapore')).time()
             if begin_time < end_time:
+                print((check_time >= begin_time and check_time <= end_time))
                 return check_time >= begin_time and check_time <= end_time
             else: # crosses midnight
+                print(check_time >= begin_time)
+                print(check_time <= end_time)
                 return check_time >= begin_time or check_time <= end_time
 
-        if is_time_between(time(0,0), time(14,0)): 
+        if is_time_between(time(0,0, tzinfo=pytz.timezone('Asia/Singapore')), time(14,0, tzinfo=pytz.timezone('Asia/Singapore'))): 
             time_of_day = "*TNB 1st Half Update - Noon Close -"
 
         if is_time_between(time(14,0), time(23,59)): 
