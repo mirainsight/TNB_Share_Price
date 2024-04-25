@@ -202,13 +202,13 @@ if st.button('Calculate share price'):
         # since_date = '2 Jan 2024'
 
 
-        # def is_time_between(begin_time, end_time, check_time=None):
-        #     # If check time is not given, default to current UTC time
-        #     check_time = check_time or datetime.now(timezone('Asia/Singapore')).time()
-        #     if begin_time < end_time:
-        #         return check_time >= begin_time and check_time <= end_time
-        #     else: # crosses midnight
-        #         return check_time >= begin_time or check_time <= end_time
+        def is_time_between(begin_time, end_time, check_time=None):
+            # If check time is not given, default to current UTC time
+            check_time = check_time or datetime.now(timezone('Asia/Singapore')).time()
+            if begin_time < end_time:
+                return check_time >= begin_time and check_time <= end_time
+            else: # crosses midnight
+                return check_time >= begin_time or check_time <= end_time
 
         # if is_time_between(time(0,0, tzinfo=pytz.timezone('Asia/Singapore')), time(14,0, tzinfo=pytz.timezone('Asia/Singapore'))): 
         #     time_of_day = "*TNB 1st Half Update - Noon Close -"
