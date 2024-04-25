@@ -33,7 +33,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-
+import st_copy_to_clipboard
 
 
 
@@ -273,7 +273,7 @@ if st.button('Calculate share price'):
 
 if st.button("Copy to WhatsApp 📋"): 
     try:
-        clipboard.copy(st.session_state.key)
+        st_copy_to_clipboard(st.session_state.key)
         st.toast(f"Copied to clipboard: {st.session_state.key}", icon='✅' )
         st.code(st.session_state.key1)
         st.code(st.session_state.key)
