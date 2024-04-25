@@ -92,11 +92,11 @@ if st.button('Calculate share price'):
         #  Looking for the table with the classes 'wikitable' and 'sortable'
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
         TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']")
-        TNB_curr_price = float(TNB_share_price_curr.replace(',', ''))
+        TNB_curr_price = float(TNB_share_price_curr)
 
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
         TNB_share_price_prev = driver.find_element(By.CSS_SELECTOR, "[data-test='prevClose']").text
-        TNB_prev_price = float(TNB_share_price_prev.replace(',', ''))
+        TNB_prev_price = float(TNB_share_price_prev)
 
      
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
