@@ -265,7 +265,7 @@ if st.button('Calculate share price'):
             st.session_state['key'] = text
             st.session_state.key1 = text_summary
         
-        hosted_html_file = "https://everydayswag.org/files/copy.html"
+        hosted_html_file = "copy.html"
         iframe_url = f"{hosted_html_file}?copy={text}"
         
         st.markdown(f'<iframe style="overflow: hidden;" src="{iframe_url}"></iframe>', unsafe_allow_html=True)
@@ -279,7 +279,7 @@ if st.button('Calculate share price'):
 if st.button("Copy to WhatsApp 📋"): 
     try:
         #st_copy_to_clipboard(st.session_state.key)
-        hosted_html_file = "https://everydayswag.org/files/copy.html"
+        hosted_html_file = "copy.html"
         iframe_url = f"{hosted_html_file}?copy={st.session_state.key}"
         
         st.markdown(f'<iframe style="overflow: hidden;" src="{iframe_url}"></iframe>', unsafe_allow_html=True)
