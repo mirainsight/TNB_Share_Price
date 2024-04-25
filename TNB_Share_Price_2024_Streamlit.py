@@ -239,7 +239,7 @@ if st.button('Calculate share price'):
                                 #'TNB_Share_Price_Close', 'TNB_Volume_Close', 'KLCI_Close', 'MSCI_Close'])
 
         today_date = datetime.now(timezone('Asia/Singapore')).strftime(format = '%A')
-        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12,33), time(13,32))): 
+        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12,33, tzinfo=pytz.timezone('Asia/Singapore')), time(13,32, tzinfo=pytz.timezone('Asia/Singapore')))): 
             print('hi')
             if not (df == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y')).any().any():
                 info  = {'Date':datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y'), 
@@ -249,7 +249,7 @@ if st.button('Calculate share price'):
                         'MSCI_Day':MSCI_curr_price}
                 df = pd.concat([df, pd.DataFrame(info, index=[0])], ignore_index=True)
 
-        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17,30), time(23,59))):
+        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17,30, tzinfo=pytz.timezone('Asia/Singapore')), time(23,59, tzinfo=pytz.timezone('Asia/Singapore')))):
             print('hello')
             if pd.isnull(df.loc[df[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y')].index[0], "TNB_Share_Price_Close"]):
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y'), 'TNB_Share_Price_Close'] = TNB_curr_price
