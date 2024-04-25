@@ -42,7 +42,7 @@ from github import Github
 repo_owner = 'mirainsight'
 repo_name = 'TNB_Share_Price'
 file_path = 'TNB_Share_Price_2024_Streamlit.csv'
-token = Github_token
+token = st.secrets['Github_token']
 
 github = Github(token)
 repo = github.get_user(repo_owner).get_repo(repo_name)
