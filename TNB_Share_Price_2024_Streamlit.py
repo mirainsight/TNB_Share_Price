@@ -246,6 +246,8 @@ if st.button('Calculate share price'):
         hi = is_time_between(time(12,33, tzinfo=pytz.timezone('Asia/Singapore')), time(13,32, tzinfo=pytz.timezone('Asia/Singapore')))
         print(hi)
         st.header(hi)
+        hello = (today_date != 'Saturday') and (today_date != 'Sunday') 
+        st.header(hello)
         if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12,33, tzinfo=pytz.timezone('Asia/Singapore')), time(13,32, tzinfo=pytz.timezone('Asia/Singapore')))): 
             print('hi')
             if not (df == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y')).any().any():
