@@ -38,7 +38,7 @@ import pytz
 import github
 from github import Github
 
-
+st.set_page_config(page_title = "TNB Updates", page_icon="⚡")
 repo_owner = 'mirainsight'
 repo_name = 'TNB_Share_Price'
 file_path = 'TNB_Share_Price_2024_Streamlit.csv'
