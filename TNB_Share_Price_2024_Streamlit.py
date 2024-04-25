@@ -272,7 +272,7 @@ if st.button('Calculate share price'):
         #st_copy_to_clipboard(text)
         st.balloons()
         st.toast(f"Copied to clipboard: {text}", icon='✅' )
-    st.code(text_summary)
+    st.write(print(text_summary))
     st.code(text)
 
 
@@ -284,7 +284,7 @@ if st.button("Copy to WhatsApp 📋"):
         
         st.markdown(f'<iframe style="overflow: hidden;" src="{iframe_url}"></iframe>', unsafe_allow_html=True)
         st.toast(f"Copied to clipboard: {st.session_state.key}", icon='✅' )
-        st.code(st.session_state.key1)
+        st.write(print(st.session_state.key1))
         st.code(st.session_state.key)
     except AttributeError: 
         st.write("Press calculate share price first!")
