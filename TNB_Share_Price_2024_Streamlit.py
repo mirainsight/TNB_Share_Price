@@ -280,19 +280,19 @@ if st.button('Calculate share price'):
             # st.session_state.key1 = text_summary
 
         st_copy_to_clipboard('hi')
-        st.balloons()
-        st.toast(f"Done calculation!: {text}", icon='✅' )
-    st.text_area("Key stats summary", text_summary)
-    st.code(text)
+#         st.balloons()
+#         st.toast(f"Done calculation!: {text}", icon='✅' )
+#     st.text_area("Key stats summary", text_summary)
+#     st.code(text)
 
 
-if st.button("Copy to clipboard 📋"): 
-    try:
-        st_copy_to_clipboard('test')
-        st_copy_to_clipboard(st.session_state.key)
-        st.toast(f"Copied to clipboard: {st.session_state.key}", icon='✅' )
-        st.text_area("Key stats summary", st.session_state.key1)
-        st.code(st.session_state.key)
-    except AttributeError: 
-        st.write("Press calculate share price first!")
+# if st.button("Copy to clipboard 📋"): 
+#     try:
+#         st_copy_to_clipboard('test')
+#         st_copy_to_clipboard(st.session_state.key)
+#         st.toast(f"Copied to clipboard: {st.session_state.key}", icon='✅' )
+#         st.text_area("Key stats summary", st.session_state.key1)
+#         st.code(st.session_state.key)
+#     except AttributeError: 
+#         st.write("Press calculate share price first!")
     
