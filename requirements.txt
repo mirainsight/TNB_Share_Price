@@ -8,3 +8,4 @@ pandas
 st_copy_to_clipboard
 seleniumbase
 webdriver-manager
+pytz
