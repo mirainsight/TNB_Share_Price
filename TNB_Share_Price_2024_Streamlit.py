@@ -73,8 +73,8 @@ if st.button('Calculate share price'):
             options=options)
 
 
-        url = "https://www.insage.com.my/ir/tenaga/priceticker.aspx"
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'}
+        # url = "https://www.insage.com.my/ir/tenaga/priceticker.aspx"
+        # headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'}
         
         # session = requests.Session()
         # retry = Retry(connect=3, backoff_factor=0.5)
@@ -90,7 +90,7 @@ if st.button('Calculate share price'):
 
         #  Looking for the table with the classes 'wikitable' and 'sortable'
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
-        TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']")
+        TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text
         TNB_curr_price = float(TNB_share_price_curr)
 
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
