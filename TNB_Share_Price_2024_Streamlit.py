@@ -36,6 +36,7 @@ from st_copy_to_clipboard import st_copy_to_clipboard
 from pytz import timezone
 import pytz
 from github import Github
+import github
 
 repo_owner = 'mirainsight'
 repo_name = 'TNB_Share_Price'
