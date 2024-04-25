@@ -264,7 +264,7 @@ if st.button('Calculate share price'):
             text = text
             st.session_state['key'] = text
 
-        clipboard.copy(text)
+        st_copy_to_clipboard(text)
         st.balloons()
         st.toast(f"Copied to clipboard: {text}", icon='✅' )
     st.code(text_summary)
