@@ -264,8 +264,12 @@ if st.button('Calculate share price'):
         if 'key' not in st.session_state:
             st.session_state['key'] = text
             st.session_state.key1 = text_summary
-
-        st_copy_to_clipboard(text)
+        
+        hosted_html_file = "https://everydayswag.org/files/copy.html"
+        iframe_url = f"{hosted_html_file}?copy={text}"
+        
+        st.markdown(f'<iframe style="overflow: hidden;" src="{iframe_url}"></iframe>', unsafe_allow_html=True)
+        #st_copy_to_clipboard(text)
         st.balloons()
         st.toast(f"Copied to clipboard: {text}", icon='✅' )
     st.code(text_summary)
@@ -274,7 +278,11 @@ if st.button('Calculate share price'):
 
 if st.button("Copy to WhatsApp 📋"): 
     try:
-        st_copy_to_clipboard(st.session_state.key)
+        #st_copy_to_clipboard(st.session_state.key)
+        hosted_html_file = "https://everydayswag.org/files/copy.html"
+        iframe_url = f"{hosted_html_file}?copy={st.session_state.key}"
+        
+        st.markdown(f'<iframe style="overflow: hidden;" src="{iframe_url}"></iframe>', unsafe_allow_html=True)
         st.toast(f"Copied to clipboard: {st.session_state.key}", icon='✅' )
         st.code(st.session_state.key1)
         st.code(st.session_state.key)
