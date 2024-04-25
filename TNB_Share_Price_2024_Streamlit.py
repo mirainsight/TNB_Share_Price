@@ -41,25 +41,14 @@ from github import Github
 
 st.set_page_config(page_title = "TNB Updates", page_icon="⚡")
 
-def create_copy_button(text_to_copy):
-    button_id = "copyButton" + text_to_copy
-    
-    button_html = f"""<button id="{button_id}">Copy</button>
-    <script>
-    document.getElementById("{button_id}").onclick = function() {{
-        navigator.clipboard.writeText("{text_to_copy}").then(function() {{
-            console.log('Async: Copying to clipboard was successful!');
-        }}, function(err) {{
-            console.error('Async: Could not copy text: ', err);
-        }});
-    }}
-    </script>"""
-    
-    st.markdown(button_html, unsafe_allow_html=True)
+import streamlit as st
 
-text_to_copy = "Hello, Streamlit!"
-st.text_input("Text to copy:", value=text_to_copy, key="text_to_copy")
-create_copy_button(st.session_state.text_to_copy)
+text_to_copy = st.text_input("Hello, World!")
+
+hosted_html_file = "https://everydayswag.org/files/copy.html"
+iframe_url = f"{hosted_html_file}?copy={text_to_copy}"
+
+st.markdown(f'<iframe style="overflow: hidden;" src="{iframe_url}"></iframe>', unsafe_allow_html=True)
 # repo_owner = 'mirainsight'
 # repo_name = 'TNB_Share_Price'
 # file_path = 'TNB_Share_Price_2024_Streamlit.csv'
