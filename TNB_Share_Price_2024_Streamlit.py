@@ -261,6 +261,7 @@ if st.button('Calculate share price'):
                 df = pd.concat([df, pd.DataFrame(info, index=[0])], ignore_index=True)
 
         if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17,30, tzinfo=pytz.timezone('Asia/Singapore')), time(23,59, tzinfo=pytz.timezone('Asia/Singapore')))):
+            st.code(df.loc[df[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y')])
             if pd.isnull(df.loc[df[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y')].index[0], "TNB_Share_Price_Close"]):
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y'), 'TNB_Share_Price_Close'] = TNB_curr_price
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y'), 'TNB_Volume_Close'] = current_volume
