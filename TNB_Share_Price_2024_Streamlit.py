@@ -268,7 +268,7 @@ if st.button('Calculate share price'):
         df.to_csv("TNB_Share_Price_2024_Streamlit.csv", index=False)
         with open('TNB_Share_Price_2024_Streamlit.csv', 'rb') as f:
             contents = f.read()
-        commit_message = f'Update CSV file as of {datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y')}'
+        commit_message = f"Update CSV file as of {datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y')}"
         repo.update_file(file_path, commit_message, contents, content.sha)
         
         st.write("Done! Only took %s seconds..." % round(t.time() - start_time, 0))
