@@ -21,7 +21,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from datetime import datetime, time
 import time as t
-import clipboard
 import pandas as pd
 import random 
 from selenium.webdriver.chrome.service import Service
