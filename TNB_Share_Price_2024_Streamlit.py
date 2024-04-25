@@ -152,7 +152,7 @@ if st.button('Calculate share price'):
 
         # Displays Time
 
-        current_time = datetime.now(timezone('Asia/Singapore')).strftime(format = '%d-%b-%Y %I:%-m %p')
+        current_time = datetime.now(timezone('Asia/Singapore')).strftime(format = '%d-%b-%Y %I:%m %p')
 
         text_summary = (f'Share Price as of: {current_time}\n' 
             f'TNB Share Price: {TNB_curr_price}\n' 
@@ -217,7 +217,7 @@ if st.button('Calculate share price'):
             time_of_day = "*TNB 2nd Half Update - Day Close -"
 
         text = (
-            f"{time_of_day} {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')}*\n"
+            f"{time_of_day} {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%m/%Y')}*\n"
             f"*Price:* RM{format(TNB_curr_price, '.2f')}\n"
             f"*Prev Close (day):* RM{format(TNB_prev_price, '.2f')}\n"
             f"({float_signs(TNB_curr_price-TNB_prev_price, 'RM')}; {float_signs((TNB_curr_price/TNB_prev_price)-1, '%')})\n"
