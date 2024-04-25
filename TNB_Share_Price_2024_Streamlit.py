@@ -72,7 +72,9 @@ if st.button('Calculate share price'):
         driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),
             options=options)
 
-
+        st.write("Getting TNB data... it's only been %s seconds..." % round(t.time() - start_time, 0))
+        start_time1 = t.time()
+     
         # url = "https://www.insage.com.my/ir/tenaga/priceticker.aspx"
         # headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'}
         
@@ -102,7 +104,8 @@ if st.button('Calculate share price'):
         TNB_volume = driver.find_element(By.CSS_SELECTOR, "[data-test='volume']").text
         current_volume = int(TNB_volume.replace(',', ''))/(10**6)
 
-
+        st.write("Getting KLCI index... it's only been %s seconds..." % round(t.time() - start_time1, 0))
+        start_time1 = t.time()
 
         # visit your target site
         driver.get('https://www.investing.com/indices/ftse-malaysia-klci')
@@ -111,9 +114,6 @@ if st.button('Calculate share price'):
         KLCI_curr_price = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text
         KLCI_curr_price = float(KLCI_curr_price.replace(',', ''))
 
-        st.write("Getting KLCI index... it's only been %s seconds..." % round(t.time() - start_time, 0))
-        start_time1 = t.time()
-        
 
         KLCI_prev_price = driver.find_element(By.CSS_SELECTOR, "[data-test='prevClose']").text
         KLCI_prev_price = float(KLCI_prev_price.replace(',', ''))
@@ -238,7 +238,7 @@ if st.button('Calculate share price'):
                                 #'TNB_Share_Price_Close', 'TNB_Volume_Close', 'KLCI_Close', 'MSCI_Close'])
 
         today_date = datetime.now().strftime(format = '%A')
-        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12,30), time(13,30))): 
+        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12,33), time(13,32))): 
             print('hi')
             if not (df == datetime.now().strftime(format = '%#d/%#m/%Y')).any().any():
                 info  = {'Date':datetime.now().strftime(format = '%#d/%#m/%Y'), 
@@ -261,8 +261,8 @@ if st.button('Calculate share price'):
         st.write("Done! Only took %s seconds..." % round(t.time() - start_time, 0))
 
         if 'key' not in st.session_state:
-            text = text
             st.session_state['key'] = text
+            st.session_state.key1 = text_summary
 
         st_copy_to_clipboard(text)
         st.balloons()
