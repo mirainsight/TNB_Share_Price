@@ -35,8 +35,9 @@ from urllib3.util.retry import Retry
 from st_copy_to_clipboard import st_copy_to_clipboard
 from pytz import timezone
 import pytz
-from github import Github
 import github
+from github import Github
+
 
 repo_owner = 'mirainsight'
 repo_name = 'TNB_Share_Price'
