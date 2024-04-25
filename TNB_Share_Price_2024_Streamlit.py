@@ -243,6 +243,9 @@ if st.button('Calculate share price'):
                                 #'TNB_Share_Price_Close', 'TNB_Volume_Close', 'KLCI_Close', 'MSCI_Close'])
 
         today_date = datetime.now(timezone('Asia/Singapore')).strftime(format = '%A')
+        hi = is_time_between(time(12,33, tzinfo=pytz.timezone('Asia/Singapore')), time(13,32, tzinfo=pytz.timezone('Asia/Singapore')))
+        print(hi)
+        st.header(hi)
         if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12,33, tzinfo=pytz.timezone('Asia/Singapore')), time(13,32, tzinfo=pytz.timezone('Asia/Singapore')))): 
             print('hi')
             if not (df == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y')).any().any():
