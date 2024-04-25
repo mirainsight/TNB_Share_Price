@@ -34,6 +34,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from st_copy_to_clipboard import st_copy_to_clipboard
 from pytz import timezone
+import pytz
 
 
 
