@@ -35,10 +35,18 @@ from urllib3.util.retry import Retry
 from st_copy_to_clipboard import st_copy_to_clipboard
 from pytz import timezone
 import pytz
+from github import Github
 
+repo_owner = 'mirainsight'
+repo_name = 'TNB_Share_Price'
+file_path = 'TNB_Share_Price_2024_Streamlit.csv'
+token = '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'
 
+github = Github(token)
+repo = github.get_user(repo_owner).get_repo(repo_name)
 
- 
+content = repo.get_contents(file_path)
+
 gifs = ["giphy.gif", "ysb.gif", "smol-illegally-smol-cat.gif", 
 "cool-fun.gif", "mcdo-cat-meme.gif", "unhand-me-wiggle-cat.gif",
 "quit.gif", "shocked-shocked-cat.gif", "santa-christmas.gif",
@@ -196,11 +204,8 @@ if st.button('Calculate share price'):
             # If check time is not given, default to current UTC time
             check_time = check_time or datetime.now(timezone('Asia/Singapore')).time()
             if begin_time < end_time:
-                print((check_time >= begin_time and check_time <= end_time))
                 return check_time >= begin_time and check_time <= end_time
             else: # crosses midnight
-                print(check_time >= begin_time)
-                print(check_time <= end_time)
                 return check_time >= begin_time or check_time <= end_time
 
         if is_time_between(time(0,0, tzinfo=pytz.timezone('Asia/Singapore')), time(14,0, tzinfo=pytz.timezone('Asia/Singapore'))): 
@@ -243,15 +248,9 @@ if st.button('Calculate share price'):
                                 #'TNB_Share_Price_Close', 'TNB_Volume_Close', 'KLCI_Close', 'MSCI_Close'])
 
         today_date = datetime.now(timezone('Asia/Singapore')).strftime(format = '%A')
-        hi = is_time_between(time(12,33, tzinfo=pytz.timezone('Asia/Singapore')), time(13,32, tzinfo=pytz.timezone('Asia/Singapore')))
-        print(hi)
-        st.header(hi)
-        hello = (today_date != 'Saturday') and (today_date != 'Sunday') 
-        st.header(hello)
+
         if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12,33, tzinfo=pytz.timezone('Asia/Singapore')), time(13,32, tzinfo=pytz.timezone('Asia/Singapore')))): 
-            st.header('test')
             if not (df == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y')).any().any():
-                st.header('im here')
                 info  = {'Date':datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y'), 
                         'TNB_Share_Price_Day':TNB_curr_price, 
                         'TNB_Volume_Day':current_volume,
@@ -260,7 +259,6 @@ if st.button('Calculate share price'):
                 df = pd.concat([df, pd.DataFrame(info, index=[0])], ignore_index=True)
 
         if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17,30, tzinfo=pytz.timezone('Asia/Singapore')), time(23,59, tzinfo=pytz.timezone('Asia/Singapore')))):
-            st.header('hello')
             if pd.isnull(df.loc[df[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y')].index[0], "TNB_Share_Price_Close"]):
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y'), 'TNB_Share_Price_Close'] = TNB_curr_price
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y'), 'TNB_Volume_Close'] = current_volume
@@ -268,6 +266,10 @@ if st.button('Calculate share price'):
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y'), 'MSCI_Close'] = MSCI_curr_price
 
         df.to_csv("TNB_Share_Price_2024_Streamlit.csv", index=False)
+        with open('TNB_Share_Price_2024_Streamlit.csv', 'rb') as f:
+            contents = f.read()
+        commit_message = f'Update CSV file as of {datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%#m/%Y')}'
+        repo.update_file(file_path, commit_message, contents, content.sha)
         
         st.write("Done! Only took %s seconds..." % round(t.time() - start_time, 0))
 
