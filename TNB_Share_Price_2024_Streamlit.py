@@ -33,7 +33,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-import st_copy_to_clipboard
+from st_copy_to_clipboard import st_copy_to_clipboard
 
 
 
@@ -77,21 +77,22 @@ if st.button('Calculate share price'):
         url = "https://www.insage.com.my/ir/tenaga/priceticker.aspx"
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'}
         
-        session = requests.Session()
-        retry = Retry(connect=3, backoff_factor=0.5)
-        adapter = HTTPAdapter(max_retries=retry)
-        session.mount('http://', adapter)
-        session.mount('https://', adapter)
-        data = session.get(url, verify=False, headers=headers).text
+        # session = requests.Session()
+        # retry = Retry(connect=3, backoff_factor=0.5)
+        # adapter = HTTPAdapter(max_retries=retry)
+        # session.mount('http://', adapter)
+        # session.mount('https://', adapter)
+        # data = session.get(url, verify=False, headers=headers).text
 
-        soup = BeautifulSoup(data, 'html.parser')
+        # soup = BeautifulSoup(data, 'html.parser')
 
-        # Creating list with all tables
-        tables = soup.find_all('table')
+        # # Creating list with all tables
+        # tables = soup.find_all('table')
 
         #  Looking for the table with the classes 'wikitable' and 'sortable'
-        TNB_share_price_curr = soup.find('table', class_='table table-hover mt10')
-        TNB_curr_price = float(TNB_share_price_curr.tbody.find_all('td')[2].text.strip())
+        driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
+        TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']")
+        TNB_curr_price = float(TNB_share_price_curr.replace(',', ''))
 
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
         TNB_share_price_prev = driver.find_element(By.CSS_SELECTOR, "[data-test='prevClose']").text
