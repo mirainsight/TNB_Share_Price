@@ -267,12 +267,12 @@ if st.button('Calculate share price'):
 
         #st_copy_to_clipboard(text)
         st.balloons()
-        st.toast(f"Copied to clipboard: {text}", icon='✅' )
+        st.toast(f"Done calculation!: {text}", icon='✅' )
     st.write(print(text_summary))
     st.code(text)
 
 
-if st.button("Copy to WhatsApp 📋"): 
+if st.button("Show text again 📋"): 
     try:
         #st_copy_to_clipboard(st.session_state.key)
         st.toast(f"Copied to clipboard: {st.session_state.key}", icon='✅' )
