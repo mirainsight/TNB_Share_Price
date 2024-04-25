@@ -152,7 +152,7 @@ if st.button('Calculate share price'):
 
         # # Displays Time
 
-        # current_time = datetime.now(timezone('Asia/Singapore')).strftime(format = '%d-%b-%Y %I:%M %p')
+        # current_time = datetime.now(timezone('Asia/Singapore')).strftime(format = '%d-%b-%Y %I:%-m %p')
 
         # text_summary = (f'Share Price as of: {current_time}\n' 
         #     f'TNB Share Price: {TNB_curr_price}\n' 
@@ -217,7 +217,7 @@ if st.button('Calculate share price'):
         #     time_of_day = "*TNB 2nd Half Update - Day Close -"
 
         # text = (
-        #     f"{time_of_day} {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%m/%Y')}*\n"
+        #     f"{time_of_day} {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')}*\n"
         #     f"*Price:* RM{format(TNB_curr_price, '.2f')}\n"
         #     f"*Prev Close (day):* RM{format(TNB_prev_price, '.2f')}\n"
         #     f"({float_signs(TNB_curr_price-TNB_prev_price, 'RM')}; {float_signs((TNB_curr_price/TNB_prev_price)-1, '%')})\n"
@@ -252,8 +252,8 @@ if st.button('Calculate share price'):
         today_date = datetime.now(timezone('Asia/Singapore')).strftime(format = '%A')
 
         if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12,33, tzinfo=pytz.timezone('Asia/Singapore')), time(13,32, tzinfo=pytz.timezone('Asia/Singapore')))): 
-            if not (df == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%-m/%Y')).any().any():
-                info  = {'Date':datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%-m/%Y'), 
+            if not (df == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')).any().any():
+                info  = {'Date':datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 
                         'TNB_Share_Price_Day':TNB_curr_price, 
                         'TNB_Volume_Day':current_volume,
                         'KLCI_Day':KLCI_curr_price,
@@ -261,23 +261,23 @@ if st.button('Calculate share price'):
                 df = pd.concat([df, pd.DataFrame(info, index=[0])], ignore_index=True)
 
         if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17,30, tzinfo=pytz.timezone('Asia/Singapore')), time(23,59, tzinfo=pytz.timezone('Asia/Singapore')))):
-            st.code(datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%-m/%Y'))
+            st.code(datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'))
             st.code(df)
             
-            st.code(df[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%-m/%Y')])
+            st.code(df[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')])
             
-            st.code(df.loc[df[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%-m/%Y')]])
+            st.code(df.loc[df[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')]])
             
-            if pd.isnull(df.loc[df[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#dd/%-m/%Y')].index[0], "TNB_Share_Price_Close"]):
-                df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%-m/%Y'), 'TNB_Share_Price_Close'] = TNB_curr_price
-                df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%-m/%Y'), 'TNB_Volume_Close'] = current_volume
-                df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%-m/%Y'), 'KLCI_Close'] = KLCI_curr_price
-                df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%-m/%Y'), 'MSCI_Close'] = MSCI_curr_price
+            if pd.isnull(df.loc[df[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')].index[0], "TNB_Share_Price_Close"]):
+                df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Share_Price_Close'] = TNB_curr_price
+                df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Volume_Close'] = current_volume
+                df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'KLCI_Close'] = KLCI_curr_price
+                df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'MSCI_Close'] = MSCI_curr_price
 
         df.to_csv("TNB_Share_Price_2024_Streamlit.csv", index=False)
         with open('TNB_Share_Price_2024_Streamlit.csv', 'rb') as f:
             contents = f.read()
-        commit_message = f"Update CSV file as of {datetime.now(timezone('Asia/Singapore')).strftime(format = '%#d/%-m/%Y')}"
+        commit_message = f"Update CSV file as of {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')}"
         repo.update_file(file_path, commit_message, contents, content.sha)
         
         st.write("Done! Only took %s seconds..." % round(t.time() - start_time, 0))
