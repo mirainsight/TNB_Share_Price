@@ -104,22 +104,7 @@ if st.button('Calculate share price'):
         # # Creating list with all tables
         # tables = soup.find_all('table')
 
-        #  Looking for the table with the classes 'wikitable' and 'sortable'
-        driver.get('https://www.investing.com/indices/ftse-malaysia-klci')
-
-        # release the resources allocated by Selenium and shut down the browser
-        KLCI_curr_price = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text
-        KLCI_curr_price = float(KLCI_curr_price.replace(',', ''))
-
-
-        KLCI_prev_price = driver.find_element(By.CSS_SELECTOR, "[data-test='prevClose']").text
-        KLCI_prev_price = float(KLCI_prev_price.replace(',', ''))
-
-
-        st.write("Getting KLCI index... it's only been %s seconds..." % round(t.time() - start_time1, 0))
-        start_time1 = t.time()
-
-        # visit your target site
+        
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
         TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text
         TNB_curr_price = float(TNB_share_price_curr)
@@ -133,6 +118,19 @@ if st.button('Calculate share price'):
         TNB_volume = driver.find_element(By.CSS_SELECTOR, "[data-test='volume']").text
         current_volume = int(TNB_volume.replace(',', ''))/(10**6)
 
+        st.write("Getting KLCI index... it's only been %s seconds..." % round(t.time() - start_time1, 0))
+        start_time1 = t.time()
+
+        # visit your target site
+        driver.get('https://www.investing.com/indices/ftse-malaysia-klci')
+
+        # release the resources allocated by Selenium and shut down the browser
+        KLCI_curr_price = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text
+        KLCI_curr_price = float(KLCI_curr_price.replace(',', ''))
+
+
+        KLCI_prev_price = driver.find_element(By.CSS_SELECTOR, "[data-test='prevClose']").text
+        KLCI_prev_price = float(KLCI_prev_price.replace(',', ''))
 
         st.write("Getting MSCI index... it only took %s seconds..." % round(t.time() - start_time1, 0))
 
