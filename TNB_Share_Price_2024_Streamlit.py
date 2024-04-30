@@ -191,8 +191,8 @@ if st.button('Calculate share price'):
         KNB_Number_of_Shares = 1245620404 # As of 2 April 2024 divestment
         KNB_Share = (KNB_Number_of_Shares/(TNB_NOSH*10**9))/100
         KNB_market_cap_since = 9.98*5.733331871
-        TNB_Share_Price_Start_Year = 9.98 # as of2/1/2024
-        K_Dividend = 0.61095409772 # RM'bn, as of 2023, to be renewed for 2024
+        TNB_Share_Price_Start_Year = 9.98 # as of 2/1/2024
+        K_Dividend = 0.60058538584 # RM'bn, as of 2023, to be renewed for 2024
         Gain_in_K_stake = (TNB_curr_price -TNB_Share_Price_Start_Year)*(KNB_Number_of_Shares/10**9)
         Gain_in_K_stake_inc_div = Gain_in_K_stake + K_Dividend
         KNB_Share_Absolute = 100*(TNB_market_cap*KNB_Share-TNB_market_cap_prev*KNB_Share) # Change in market share from prev close
