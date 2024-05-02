@@ -89,31 +89,41 @@ if st.button('Calculate share price'):
         st.write("Getting TNB data... it's only been %s seconds..." % round(t.time() - start_time, 0))
         start_time1 = t.time()
      
-        # url = "https://www.insage.com.my/ir/tenaga/priceticker.aspx"
-        # headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'}
+        url = "https://www.insage.com.my/ir/tenaga/priceticker.aspx"
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'}
         
-        # session = requests.Session()
-        # retry = Retry(connect=3, backoff_factor=0.5)
-        # adapter = HTTPAdapter(max_retries=retry)
-        # session.mount('http://', adapter)
-        # session.mount('https://', adapter)
-        # data = session.get(url, verify=False, headers=headers).text
+        session = requests.Session()
+        retry = Retry(connect=3, backoff_factor=0.5)
+        adapter = HTTPAdapter(max_retries=retry)
+        session.mount('http://', adapter)
+        session.mount('https://', adapter)
+        data = session.get(url, verify=False, headers=headers).text
 
-        # soup = BeautifulSoup(data, 'html.parser')
+        soup = BeautifulSoup(data, 'html.parser')
 
-        # # Creating list with all tables
-        # tables = soup.find_all('table')
+        # Creating list with all tables
+        tables = soup.find_all('table')
+        TNB_share_price_curr = soup.find('table', class_='table table-hover mt10')
+        TNB_curr_price = float(TNB_share_price_curr.tbody.find_all('td')[2].text.strip())
+        
+        
+        TNB_share_price_prev = soup.find('div', class_='col-sm-6 pt10')
+        TNB_prev_price = float(TNB_share_price_prev.find_all('th')[0].text.strip())
+        
+        TNB_volume = soup.find('div', class_='col-sm-6 mt10')
+        current_volume = TNB_volume.tbody.find_all('th')[0].text.strip()
+        current_volume = int(current_volume.replace(',', ''))/(10**6)
 
         
-        driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
-        TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text
-        TNB_curr_price = float(TNB_share_price_curr)
+        # driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
+        # TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text
+        # TNB_curr_price = float(TNB_share_price_curr)
 
-        TNB_share_price_prev = driver.find_element(By.CSS_SELECTOR, "[data-test='prevClose']").text
-        TNB_prev_price = float(TNB_share_price_prev)
+        # TNB_share_price_prev = driver.find_element(By.CSS_SELECTOR, "[data-test='prevClose']").text
+        # TNB_prev_price = float(TNB_share_price_prev)
 
-        TNB_volume = driver.find_element(By.CSS_SELECTOR, "[data-test='volume']").text
-        current_volume = int(TNB_volume.replace(',', ''))/(10**6)
+        # TNB_volume = driver.find_element(By.CSS_SELECTOR, "[data-test='volume']").text
+        # current_volume = int(TNB_volume.replace(',', ''))/(10**6)
 
         st.write("Getting KLCI index... it's only been %s seconds..." % round(t.time() - start_time1, 0))
         start_time1 = t.time()
