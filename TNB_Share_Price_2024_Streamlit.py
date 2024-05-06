@@ -260,7 +260,7 @@ if st.button('Calculate share price'):
 
         today_date = datetime.now(timezone('Asia/Singapore')).strftime(format = '%A')
 
-        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12,33, tzinfo=pytz.timezone('Asia/Singapore')), time(13,32, tzinfo=pytz.timezone('Asia/Singapore')))): 
+        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12,33, tzinfo=pytz.timezone('Asia/Singapore')), time(14,00, tzinfo=pytz.timezone('Asia/Singapore')))): 
             if not (df == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')).any().any():
                 info  = {'Date':datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 
                         'TNB_Share_Price_Day':TNB_curr_price, 
