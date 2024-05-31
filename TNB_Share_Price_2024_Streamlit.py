@@ -249,7 +249,7 @@ if st.button('Calculate share price'):
             f"RM{format(Gain_in_K_stake, '.2f')}bn\n"
             f"*Dividends received (TTM):* RM{format(K_Dividend*10**3, '.1f')}m\n"
             f"*Dividend yield (TTM):* {format(100*K_Div_yield, '.2f')}%\n"
-            f"*NOSH*: {KNB_NOSH_formatted} ({format(KNB_Stake, '.2f')}%"
+            f"*KNB Stake*: {KNB_NOSH_formatted} ({format(100*KNB_Stake, '.2f')}%)"
             )
         st.session_state.key = text
         st.session_state.key1 = text_summary
