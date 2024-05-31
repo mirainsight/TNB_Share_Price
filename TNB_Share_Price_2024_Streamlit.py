@@ -199,7 +199,9 @@ if st.button('Calculate share price'):
         TNB_market_cap = TNB_NOSH * TNB_curr_price
         TNB_market_cap_prev = TNB_NOSH * TNB_prev_price
         KNB_Number_of_Shares = 1245620404 # As of 2 April 2024 divestment
+        KNB_NOSH_formatted = str('{:,}'.format(KNB_Number_of_Shares)) 
         KNB_Share = (KNB_Number_of_Shares/(TNB_NOSH*10**9))/100
+        KNB_Stake = KNB_Number_of_Shares/(TNB_NOSH*(10**9))
         KNB_market_cap_since = 9.98*5.733331871
         TNB_Share_Price_Start_Year = 9.98 # as of 2/1/2024
         K_Dividend = 0.60058538584 # RM'bn, as of 18/4/24, updated for recent div date
@@ -247,7 +249,7 @@ if st.button('Calculate share price'):
             f"RM{format(Gain_in_K_stake, '.2f')}bn\n"
             f"*Dividends received (TTM):* RM{format(K_Dividend*10**3, '.1f')}m\n"
             f"*Dividend yield (TTM):* {format(100*K_Div_yield, '.2f')}%\n"
-
+            f"*NOSH*: {KNB_NOSH_formatted} ({format(KNB_Stake, '.2f')}%"
             )
         st.session_state.key = text
         st.session_state.key1 = text_summary
