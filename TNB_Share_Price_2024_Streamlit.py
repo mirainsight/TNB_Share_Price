@@ -229,8 +229,7 @@ if st.button('Calculate share price'):
 
         text = (
             f"{time_of_day} {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%m/%Y')}*\n"
-            f"*Price:* RM{format(TNB_curr_price, '.2f')}\n"
-            f"({float_signs(TNB_curr_price-TNB_Share_Price_Start_Year, 'RM')}; {float_signs((TNB_curr_price/TNB_Share_Price_Start_Year)-1, '%')})\n"
+            f"*Price:* RM{format(TNB_curr_price, '.2f')} ({float_signs((TNB_curr_price/TNB_Share_Price_Start_Year)-1, '%')} YTD)\n"
             f"*Prev Close (day):* RM{format(TNB_prev_price, '.2f')}\n"
             f"({float_signs(TNB_curr_price-TNB_prev_price, 'RM')}; {float_signs((TNB_curr_price/TNB_prev_price)-1, '%')})\n"
             f"*Market Cap:* RM{format(TNB_market_cap, '.1f')}bn\n"
@@ -241,6 +240,7 @@ if st.button('Calculate share price'):
             f"*MSCI AC Asia Index:* {format(MSCI_curr_price, '.2f')} ({float_signs(MSCI_curr_price/MSCI_prev_price-1, '%')})\n\n"
             f"*Khazanah gain/loss since yesterday's market close:*\n"
             f"{float_signs(KNB_Share_Absolute*1000, 'RM',1)}m\n\n"
+            
             f"*Since {since_date}:*\n"
             f"*TNB Mkt Cap increase/decrease:*\n"
             f"RM{format(TNB_market_cap-KNB_market_cap_since, '.2f')}bn (RM{format(TNB_market_cap, '.2f')}bn vs RM{format(KNB_market_cap_since, '.2f')}bn)\n"
