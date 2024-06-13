@@ -229,7 +229,7 @@ if st.button('Calculate share price'):
 
         text = (
             f"{time_of_day} {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%m/%Y')}*\n"
-            f"*Price:* RM{format(TNB_curr_price, '.2f')} ({float_signs((TNB_curr_price/TNB_Share_Price_Start_Year)-1, '%')} YTD)\n"
+            f"*Price:* RM{format(TNB_curr_price, '.2f')}\n({float_signs((TNB_curr_price/TNB_Share_Price_Start_Year)-1, '%')} YTD)\n"
             f"*Prev Close (day):* RM{format(TNB_prev_price, '.2f')}\n"
             f"({float_signs(TNB_curr_price-TNB_prev_price, 'RM')}; {float_signs((TNB_curr_price/TNB_prev_price)-1, '%')})\n"
             f"*Market Cap:* RM{format(TNB_market_cap, '.1f')}bn\n"
