@@ -198,7 +198,7 @@ if st.button('Calculate share price'):
         TNB_NOSH = 5787331871/10**9
         TNB_market_cap = TNB_NOSH * TNB_curr_price
         TNB_market_cap_prev = TNB_NOSH * TNB_prev_price
-        KNB_Number_of_Shares = 1245620404 # As of 2 April 2024 divestment
+        KNB_Number_of_Shares = 1215620404 # As of 19 June 2024 divestment
         KNB_NOSH_formatted = str('{:,}'.format(KNB_Number_of_Shares)) 
         KNB_Share = (KNB_Number_of_Shares/(TNB_NOSH*10**9))/100
         KNB_Stake = KNB_Number_of_Shares/(TNB_NOSH*(10**9))
@@ -208,7 +208,7 @@ if st.button('Calculate share price'):
         Gain_in_K_stake = (TNB_curr_price -TNB_Share_Price_Start_Year)*(KNB_Number_of_Shares/10**9)
         Gain_in_K_stake_inc_div = Gain_in_K_stake + K_Dividend
         KNB_Share_Absolute = 100*(TNB_market_cap*KNB_Share-TNB_market_cap_prev*KNB_Share) # Change in market share from prev close
-        K_Div_yield = ((K_Dividend*10**9)/(1305620404))/TNB_curr_price # Divided by pre-divestment number of shares since ex-date was before divestment
+        K_Div_yield = ((K_Dividend*10**9)/(1215620404))/TNB_curr_price # Divided by pre-divestment number of shares since ex-date was before divestment
 
         since_date = '2 Jan 2024'
 
