@@ -291,11 +291,11 @@ if st.button('Calculate share price'):
             st.session_state['key'] = text
             st.session_state.key1 = text_summary
 
-        st_copy_to_clipboard('hi')
         st.balloons()
         st.toast(f"Done calculation!: {text}", icon='✅' )
     st.text_area("Key stats summary", text_summary)
     st.code(text)
+    st_copy_to_clipboard(text)
 
 
 if st.button("Show again"): 
