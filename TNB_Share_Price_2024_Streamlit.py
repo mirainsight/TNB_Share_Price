@@ -293,9 +293,10 @@ if st.button('Calculate share price'):
 
         st.balloons()
         st.toast(f"Done calculation!: {text}", icon='✅' )
+    st_copy_to_clipboard(text)
     st.text_area("Key stats summary", text_summary)
     st.code(text)
-    st_copy_to_clipboard(text)
+
 
 
 if st.button("Show again"): 
