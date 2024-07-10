@@ -195,7 +195,7 @@ if st.button('Calculate share price'):
                 text = '{:'+dp+'}%'
                 return(text.format(string))
 
-        TNB_NOSH = 5787331871/10**9
+        TNB_NOSH = 5812948071/10**9 # Updated as of 10th July 2024
         TNB_market_cap = TNB_NOSH * TNB_curr_price
         TNB_market_cap_prev = TNB_NOSH * TNB_prev_price
         KNB_Number_of_Shares = 1215620404 # As of 19 June 2024 divestment
