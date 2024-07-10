@@ -131,7 +131,7 @@ if st.button('Calculate share price'):
         TNB_volume = driver.find_element(By.CSS_SELECTOR, "[data-test='volume']").text
         st.write(TNB_volume)
         st.write(type(TNB_volume))
-        current_volume = int(TNB_volume.replace(',', ''))/(10**6)
+        current_volume = int(float(TNB_volume.replace(',', ''))/(10**6))
 
         st.write("Getting KLCI index... it's only been %s seconds..." % round(t.time() - start_time1, 0))
         start_time1 = t.time()
