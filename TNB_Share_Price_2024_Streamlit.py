@@ -122,7 +122,11 @@ if st.button('Calculate share price'):
 
         TNB_share_price_prev = driver.find_element(By.CSS_SELECTOR, "[data-test='prevClose']").text
         st.write(TNB_share_price_prev)
-        TNB_prev_price = float(TNB_share_price_prev)
+
+        try:
+            TNB_prev_price = float(TNB_share_price_prev)
+        except ValueError:
+            TNB_prev_price = TNB_share_price_prev
 
         TNB_volume = driver.find_element(By.CSS_SELECTOR, "[data-test='volume']").text
         current_volume = int(TNB_volume.replace(',', ''))/(10**6)
