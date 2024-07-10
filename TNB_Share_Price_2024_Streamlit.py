@@ -117,10 +117,11 @@ if st.button('Calculate share price'):
         
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
         TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text
+        st.write(TNB_share_price_prev)
         TNB_curr_price = float(TNB_share_price_curr)
 
         TNB_share_price_prev = driver.find_element(By.CSS_SELECTOR, "[data-test='prevClose']").text
-        print(TNB_share_price_prev)
+        st.write(TNB_share_price_prev)
         TNB_prev_price = float(TNB_share_price_prev)
 
         TNB_volume = driver.find_element(By.CSS_SELECTOR, "[data-test='volume']").text
