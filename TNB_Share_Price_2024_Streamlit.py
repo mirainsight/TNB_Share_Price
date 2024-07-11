@@ -252,7 +252,7 @@ if st.button('Calculate share price'):
             f"({float_signs(TNB_curr_price-TNB_prev_price, 'RM')}; {float_signs((TNB_curr_price/TNB_prev_price)-1, '%')})\n"
             f"*Market Cap:* RM{format(TNB_market_cap, '.1f')}bn\n"
             f"*Khazanah's Share:* RM{format(KNB_Share*TNB_market_cap*100, '.1f')}bn\n"
-            f"({float_signs(KNB_Share_Absolute, 'RM')}; {float_signs((TNB_curr_price/TNB_prev_price)-1, '%')})\n"
+            f"({float_signs(KNB_Share_Absolute, 'RM')}bn; {float_signs((TNB_curr_price/TNB_prev_price)-1, '%')})\n"
             f"*Volume:* {format(current_volume, '.2f')}m\n"
             f"*KLCI Index:* {format(KLCI_curr_price, '.2f')} ({float_signs(KLCI_curr_price/KLCI_prev_price-1, '%')})\n"
             f"*MSCI AC Asia Index:* {format(MSCI_curr_price, '.2f')} ({float_signs(MSCI_curr_price/MSCI_prev_price-1, '%')})\n\n"
