@@ -85,10 +85,7 @@ if st.button('Calculate share price'):
      
         service = Service()
         options = webdriver.ChromeOptions()
-        driver = webdriver.Chrome(
-            service=Service(
-                ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-            ),
+        driver = webdriver.Chrome(webdriver.Chrome(ChromeDriverManager().install()),
             options=options,
         )
 
