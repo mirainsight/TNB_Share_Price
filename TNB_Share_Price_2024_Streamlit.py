@@ -89,7 +89,11 @@ if st.button('Calculate share price'):
         # driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
         service = Service()
         # options = webdriver.ChromeOptions()
-        driver =  webdriver.Chrome(options=options)
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+            ),
+            options=options,
+        )
+
 
         st.write("Getting TNB data... it's only been %s seconds..." % round(t.time() - start_time, 0))
         start_time1 = t.time()
