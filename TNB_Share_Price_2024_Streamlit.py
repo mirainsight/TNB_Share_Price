@@ -128,11 +128,9 @@ if st.button('Calculate share price'):
         
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
         TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text
-        st.write(TNB_share_price_curr)
         TNB_curr_price = float(TNB_share_price_curr)
 
         TNB_share_price_prev = driver.find_element(By.CSS_SELECTOR, "[data-test='prevClose']").text
-        st.write(TNB_share_price_prev)
 
         try:
             TNB_prev_price = float(TNB_share_price_prev)
@@ -144,6 +142,7 @@ if st.button('Calculate share price'):
             current_volume = int(float(TNB_volume.replace(',', ''))/(10**6))
         except ValueError:
             current_volume = TNB_volume/(10**6)
+        st.write(current_volume, TNB_volume)
 
         st.write("Getting KLCI index... it's only been %s seconds..." % round(t.time() - start_time1, 0))
         start_time1 = t.time()
