@@ -140,7 +140,8 @@ if st.button('Calculate share price'):
         TNB_volume = driver.find_element(By.CSS_SELECTOR, "[data-test='volume']").text
         st.write(TNB_volume)
         try:
-            current_volume = int(float(TNB_volume.replace(',', ''))/(10**6))
+            current_volume = int(TNB_volume.replace(',', '')/(10**6))
+            st.write(TNB_volume)
         except ValueError:
             current_volume = TNB_volume/(10**6)
 
