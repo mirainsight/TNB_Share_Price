@@ -83,6 +83,8 @@ if st.button('Calculate share price'):
         options.add_argument('--ignore-ssl-errors')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
+        options.add_argument("--start-maximized")
+        options.add_argument("--window-size=1920x1080") #I added this
      
         # service = Service()
         # options = webdriver.ChromeOptions()
