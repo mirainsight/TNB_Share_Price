@@ -83,8 +83,9 @@ if st.button('Calculate share price'):
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
      
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),
-            options=options)
+        service = Service()
+        options = webdriver.ChromeOptions()
+        driver = webdriver.Chrome(service=service, options=options)
 
         st.write("Getting TNB data... it's only been %s seconds..." % round(t.time() - start_time, 0))
         start_time1 = t.time()
@@ -132,10 +133,7 @@ if st.button('Calculate share price'):
         try:
             current_volume = int(float(TNB_volume.replace(',', ''))/(10**6))
         except ValueError:
-            #current_volume = TNB_volume/(10**6)
-            st.write(f"Hi my name is {TNB_volume}")
-            st.write(type(TNB_volume))
-            
+            current_volume = TNB_volume/(10**6)
 
         st.write("Getting KLCI index... it's only been %s seconds..." % round(t.time() - start_time1, 0))
         start_time1 = t.time()
