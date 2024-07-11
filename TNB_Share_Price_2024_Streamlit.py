@@ -141,7 +141,9 @@ if st.button('Calculate share price'):
         st.write(TNB_volume)
         current_volume = TNB_volume.replace(',', '')
         current_volume = float(current_volume)
+        st.write(current_volume)
         current_volume = int(current_volume/(10**6))
+        st.write(current_volume)
 
         st.write("Getting KLCI index... it's only been %s seconds..." % round(t.time() - start_time1, 0))
         start_time1 = t.time()
