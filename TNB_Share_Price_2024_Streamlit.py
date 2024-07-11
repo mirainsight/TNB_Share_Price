@@ -142,7 +142,6 @@ if st.button('Calculate share price'):
             current_volume = int(float(TNB_volume.replace(',', ''))/(10**6))
         except ValueError:
             current_volume = TNB_volume/(10**6)
-        st.write(current_volume, TNB_volume)
 
         st.write("Getting KLCI index... it's only been %s seconds..." % round(t.time() - start_time1, 0))
         start_time1 = t.time()
