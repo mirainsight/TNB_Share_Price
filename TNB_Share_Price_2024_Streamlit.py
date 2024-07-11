@@ -83,9 +83,12 @@ if st.button('Calculate share price'):
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
      
+        # service = Service()
+        # options = webdriver.ChromeOptions()
+        # driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
         service = Service()
         options = webdriver.ChromeOptions()
-        driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
+        driver = webdriver.Chrome(service=service, options=options)
 
         st.write("Getting TNB data... it's only been %s seconds..." % round(t.time() - start_time, 0))
         start_time1 = t.time()
