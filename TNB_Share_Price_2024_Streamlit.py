@@ -224,7 +224,7 @@ if st.button('Calculate share price'):
         Gain_in_K_stake = (TNB_curr_price -TNB_Share_Price_Start_Year)*(KNB_Number_of_Shares/10**9)
         Gain_in_K_stake_inc_div = Gain_in_K_stake + K_Dividend
         KNB_Share_Absolute = 100*(TNB_market_cap*KNB_Share-TNB_market_cap_prev*KNB_Share) # Change in market share from prev close
-        K_Div_yield = ((K_Dividend*10**9)/(1215620404))/TNB_curr_price # Divided by pre-divestment number of shares since ex-date was before divestment
+        K_Div_yield = ((K_Dividend*10**9)/(KNB_Number_of_Shares))/TNB_curr_price # Divided by pre-divestment number of shares since ex-date was before divestment
 
         since_date = '2 Jan 2024'
 
