@@ -40,6 +40,10 @@ import pytz
 import github
 from github import Github
 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
 st.set_page_config(page_title = "TNB Updates", page_icon="⚡")
 
 repo_owner = 'mirainsight'
@@ -127,7 +131,7 @@ if st.button('Calculate share price'):
 
         
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
-        TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text
+        TNB_share_price_curr = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text))).click()
         TNB_curr_price = float(TNB_share_price_curr)
 
         TNB_share_price_prev = driver.find_element(By.CSS_SELECTOR, "[data-test='prevClose']").text
