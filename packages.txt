@@ -2,4 +2,3 @@ chromium
 chromium-driver
 xclip
 libgtk-3-dev
-streamlit_autorefresh
