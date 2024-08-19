@@ -133,24 +133,24 @@ if st.button('Calculate share price'):
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
         wait_time = 30
         error = True 
-        hi = 0
+        hi = 1
         while error:
-            st.write(f"Iteration: {hi}")
+            st.write(f"Iteration 1: {hi}")
             try:
                 WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
                 error = False
-                st.write(f"Success during iteration: {hi}")
+                st.write(f"Success during iteration 2: {hi}")
             except: 
                 wait_time += 10
                 hi += 1
                 try:
-                    st.write(f"Iteration: {hi}")
+                    st.write(f"Iteration 3: {hi}")
                     WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
                 except:
                     wait_time += 10
                     hi += 1
                     try:
-                        st.write(f"Iteration: {hi}")
+                        st.write(f"Iteration 4: {hi}")
                         WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
                     except:
                         pass
