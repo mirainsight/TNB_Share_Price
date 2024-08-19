@@ -131,7 +131,7 @@ if st.button('Calculate share price'):
 
         
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
-        wait_time = 30
+        wait_time = 10
         error = True 
         hi = 1
         while error:
