@@ -142,20 +142,21 @@ if st.button('Calculate share price'):
                 st.write(f"Success during iteration: {hi}")
             except: 
                 wait_time += 10
+                hi += 1
                 try:
                     st.write(f"Iteration: {hi}")
                     WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
-                    hi += 1
                 except:
                     wait_time += 10
+                    hi += 1
                     try:
                         st.write(f"Iteration: {hi}")
                         WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
-                        hi += 1
                     except:
                         pass
                     
-        
+        st.write(f"iteration: {hi}")
+        st.write(f"wait time: {wait_time}")
         TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text                                                      
         TNB_curr_price = float(TNB_share_price_curr)
 
