@@ -143,17 +143,6 @@ if st.button('Calculate share price'):
             except: 
                 wait_time += 10
                 hi += 1
-                try:
-                    st.write(f"Iteration 3: {hi}")
-                    WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
-                except:
-                    wait_time += 10
-                    hi += 1
-                    try:
-                        st.write(f"Iteration 4: {hi}")
-                        WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
-                    except:
-                        pass
                     
         st.write(f"iteration: {hi}")
         st.write(f"wait time: {wait_time}")
