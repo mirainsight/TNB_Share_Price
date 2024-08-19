@@ -133,13 +133,16 @@ if st.button('Calculate share price'):
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
         wait_time = 30
         error = True 
+        hi = 0
         while error:
+            st.write(hi)
             try:
-            WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
-            error = False
+                WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
+                error = False
             except: 
-            wait_time += 10
-            WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
+                wait_time += 10
+                WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
+                hi += 1
         
         TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text                                                      
         TNB_curr_price = float(TNB_share_price_curr)
