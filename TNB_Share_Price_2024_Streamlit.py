@@ -138,7 +138,7 @@ def calculate(start):
         
             
             driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
-            wait_time = 10
+            wait_time = 1
             error = True 
             iteration = 1
             while error:
@@ -149,7 +149,7 @@ def calculate(start):
                     error = False
                     st.write(f"Success during iteration 2: {iteration}")
                 except: 
-                    wait_time += 10
+                    wait_time += 1
                     iteration += 1
                 
             st.write(f"iteration: {iteration}")
