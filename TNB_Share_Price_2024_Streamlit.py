@@ -151,12 +151,6 @@ def calculate(start):
                 except: 
                     wait_time += 10
                     iteration += 1
-                if iteration > 4:
-                    break
-            if iteration > 4: 
-                refresh = True
-                st.write("Refreshing now")
-                return refresh
                 
             st.write(f"iteration: {iteration}")
             st.write(f"wait time: {wait_time}")
@@ -312,7 +306,7 @@ def calculate(start):
         
             today_date = datetime.now(timezone('Asia/Singapore')).strftime(format = '%A')
         
-            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12,33, tzinfo=pytz.timezone('Asia/Singapore')), time(14,00, tzinfo=pytz.timezone('Asia/Singapore')))): 
+            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 45, tzinfo=pytz.timezone('Asia/Singapore')), time(14,00, tzinfo=pytz.timezone('Asia/Singapore')))): 
                 if not (df == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')).any().any():
                     info  = {'Date':datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 
                             'TNB_Share_Price_Day':TNB_curr_price, 
@@ -321,7 +315,7 @@ def calculate(start):
                             'MSCI_Day':MSCI_curr_price}
                     df = pd.concat([df, pd.DataFrame(info, index=[0])], ignore_index=True)
         
-            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17,30, tzinfo=pytz.timezone('Asia/Singapore')), time(23,59, tzinfo=pytz.timezone('Asia/Singapore')))):
+            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17,45, tzinfo=pytz.timezone('Asia/Singapore')), time(23,59, tzinfo=pytz.timezone('Asia/Singapore')))):
                  if pd.isnull(df.loc[df.index[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')].tolist()[0], "TNB_Share_Price_Close"]):
                     df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Share_Price_Close'] = TNB_curr_price
                     df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Volume_Close'] = current_volume
@@ -349,8 +343,6 @@ def calculate(start):
             return refresh
 
 refresh = calculate(start)
-while refresh: 
-    calculate(True)
 
 
 if st.button("Show again"): 
