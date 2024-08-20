@@ -150,6 +150,7 @@ if (st.button('Calculate share price')) or (refresh):
                 wait_time += 10
                 iteration += 1
         if iteration > 4: 
+            refresh = True
             break
         st.write(f"iteration: {iteration}")
         st.write(f"wait time: {wait_time}")
