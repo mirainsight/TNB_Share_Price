@@ -66,8 +66,8 @@ gifs = ["giphy.gif", "ysb.gif", "smol-illegally-smol-cat.gif",
 
 n=random.randint(0,len(gifs)-1) 
 
-
-if st.button('Calculate share price'):
+refresh = False 
+if (st.button('Calculate share price')) or (refresh):
     #VIDEO_URL = "https://tenor.com/view/cat-zoning-out-cat-stare-black-cat-black-cat-tiktok-stare-gif-6568742496074847242"
     st.image(gifs[n])
     with st.status("Compiling info...", expanded=True) as status:
@@ -137,18 +137,20 @@ if st.button('Calculate share price'):
         driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
         wait_time = 10
         error = True 
-        hi = 1
+        iteration = 1
         while error:
-            st.write(f"Iteration 1: {hi}")
+            st.write(f"Iteration 1: {iteration}")
+            if iteration > 4:
+                break
             try:
                 WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
                 error = False
-                st.write(f"Success during iteration 2: {hi}")
+                st.write(f"Success during iteration 2: {iteration}")
             except: 
                 wait_time += 10
-                hi += 1
-                    
-        st.write(f"iteration: {hi}")
+                iteration += 1
+        if iteration > 4: break
+        st.write(f"iteration: {iteration}")
         st.write(f"wait time: {wait_time}")
         TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text                                                      
         TNB_curr_price = float(TNB_share_price_curr)
