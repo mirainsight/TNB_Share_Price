@@ -143,8 +143,7 @@ def calculate(start):
             iteration = 1
             while error:
                 st.write(f"Iteration 1: {iteration}")
-                if iteration > 4:
-                    #break
+
                 try:
                     WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
                     error = False
@@ -152,6 +151,8 @@ def calculate(start):
                 except: 
                     wait_time += 10
                     iteration += 1
+                if iteration > 4:
+                    break
             if iteration > 4: 
                 refresh = True
                 st.write("Refreshing now")
