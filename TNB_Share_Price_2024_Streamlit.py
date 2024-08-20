@@ -149,7 +149,8 @@ if (st.button('Calculate share price')) or (refresh):
             except: 
                 wait_time += 10
                 iteration += 1
-        if iteration > 4: break
+        if iteration > 4: 
+            break
         st.write(f"iteration: {iteration}")
         st.write(f"wait time: {wait_time}")
         TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text                                                      
