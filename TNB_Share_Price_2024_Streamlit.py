@@ -70,7 +70,7 @@ refresh = False
 start = st.button('Calculate share price')
 
 def calculate(start):
-    if start or (refresh):
+    if start or refresh:
         #VIDEO_URL = "https://tenor.com/view/cat-zoning-out-cat-stare-black-cat-black-cat-tiktok-stare-gif-6568742496074847242"
         st.image(gifs[n])
         with st.status("Compiling info...", expanded=True) as status:
