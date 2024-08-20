@@ -69,6 +69,7 @@ n=random.randint(0,len(gifs)-1)
 refresh = False 
 start = st.button('Calculate share price')
 
+
 def calculate(start):
     if start or refresh:
         #VIDEO_URL = "https://tenor.com/view/cat-zoning-out-cat-stare-black-cat-black-cat-tiktok-stare-gif-6568742496074847242"
@@ -156,7 +157,8 @@ def calculate(start):
             if iteration > 4: 
                 refresh = True
                 st.write("Refreshing now")
-                calculate(refresh)
+                return iteration
+                
             st.write(f"iteration: {iteration}")
             st.write(f"wait time: {wait_time}")
             TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text                                                      
@@ -345,7 +347,9 @@ def calculate(start):
             st.text_area("Key stats summary", text_summary)
             st.code(text)
 
-calculate(start)
+retry = calculate(start)
+if retry > 4: 
+    calculate(True)
 
 
 if st.button("Show again"): 
