@@ -66,12 +66,11 @@ gifs = ["giphy.gif", "ysb.gif", "smol-illegally-smol-cat.gif",
 
 n=random.randint(0,len(gifs)-1) 
 
-refresh = False 
 start = st.button('Calculate share price')
 
-
+refresh = False
 def calculate(start):
-    if start or refresh:
+    if start:
         #VIDEO_URL = "https://tenor.com/view/cat-zoning-out-cat-stare-black-cat-black-cat-tiktok-stare-gif-6568742496074847242"
         st.image(gifs[n])
         with st.status("Compiling info...", expanded=True) as status:
@@ -157,7 +156,7 @@ def calculate(start):
             if iteration > 4: 
                 refresh = True
                 st.write("Refreshing now")
-                return iteration
+                return refresh
                 
             st.write(f"iteration: {iteration}")
             st.write(f"wait time: {wait_time}")
@@ -346,9 +345,11 @@ def calculate(start):
             st_copy_to_clipboard(text)
             st.text_area("Key stats summary", text_summary)
             st.code(text)
+            refresh = False
+            return refresh
 
-retry = calculate(start)
-if retry > 4: 
+refresh = calculate(start)
+while refresh: 
     calculate(True)
 
 
