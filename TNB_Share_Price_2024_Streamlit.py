@@ -68,7 +68,6 @@ n=random.randint(0,len(gifs)-1)
 
 start = st.button('Calculate share price')
 
-refresh = False
 def calculate(start):
     if start:
         #VIDEO_URL = "https://tenor.com/view/cat-zoning-out-cat-stare-black-cat-black-cat-tiktok-stare-gif-6568742496074847242"
@@ -339,10 +338,8 @@ def calculate(start):
             st_copy_to_clipboard(text)
             st.text_area("Key stats summary", text_summary)
             st.code(text)
-            refresh = False
-            return refresh
 
-refresh = calculate(start)
+calculate(start)
 
 
 if st.button("Show again"): 
