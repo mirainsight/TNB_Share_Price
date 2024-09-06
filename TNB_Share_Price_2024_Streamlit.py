@@ -37,11 +37,11 @@ from github import Github
 disable_warnings(InsecureRequestWarning)
 
 hardcoded_var = {
-    TNB_NOSH : 5812948071/10**9, # Updated as of 10th July 2024
-    KNB_Number_of_Shares : 1215620404, # As of 19 June 2024 divestment
-    TNB_Share_Price_Start_Year : 9.98, # as of 2/1/2024
-    K_Dividend : 0.61030538584, # RM'bn, as of 18/4/24, updated for recent div date
-    since_date : '2 Jan 2024'
+    "TNB_NOSH" : 5812948071/10**9, # Updated as of 10th July 2024
+    "KNB_Number_of_Shares" : 1215620404, # As of 19 June 2024 divestment
+    "TNB_Share_Price_Start_Year" : 9.98, # as of 2/1/2024
+    "K_Dividend" : 0.61030538584, # RM'bn, as of 18/4/24, updated for recent div date
+    "since_date" : '2 Jan 2024'
 }
 
 # set up page
