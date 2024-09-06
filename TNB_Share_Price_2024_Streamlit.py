@@ -37,12 +37,11 @@ from github import Github
 disable_warnings(InsecureRequestWarning)
 
 hardcoded_var = {
-    TNB_NOSH = 5812948071/10**9, # Updated as of 10th July 2024
-    KNB_Number_of_Shares = 1215620404, # As of 19 June 2024 divestment
-    KNB_market_cap_since = 9.98*5.733331871,
-    TNB_Share_Price_Start_Year = 9.98, # as of 2/1/2024
-    K_Dividend = 0.61030538584, # RM'bn, as of 18/4/24, updated for recent div date
-    since_date = '2 Jan 2024'
+    TNB_NOSH : 5812948071/10**9, # Updated as of 10th July 2024
+    KNB_Number_of_Shares : 1215620404, # As of 19 June 2024 divestment
+    TNB_Share_Price_Start_Year : 9.98, # as of 2/1/2024
+    K_Dividend : 0.61030538584, # RM'bn, as of 18/4/24, updated for recent div date
+    since_date : '2 Jan 2024'
 }
 
 # set up page
@@ -210,8 +209,8 @@ def calculate(start, variables=hardcoded_var):
             # Set up of formularised variables
             TNB_NOSH = variables["TNB_NOSH"]
             KNB_Number_of_Shares = variables["KNB_Number_of_Shares"]
-            KNB_market_cap_since = variables["KNB_market_cap_since"]
             TNB_Share_Price_Start_Year = variables["TNB_Share_Price_Start_Year"]
+            KNB_market_cap_since = TNB_Share_Price_Start_Year * TNB_NOSH
             K_Dividend = variables["K_Dividend"]
             since_date = variables["since_date"]
             
