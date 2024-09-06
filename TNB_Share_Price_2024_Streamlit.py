@@ -3,19 +3,13 @@
 
 # In[1]:
 
-
+# import relevant libraries
 import streamlit as st
-
-
 import requests
 from bs4 import BeautifulSoup
 from urllib3.exceptions import InsecureRequestWarning
 from urllib3 import disable_warnings
-
-disable_warnings(InsecureRequestWarning)
-
 from datetime import datetime
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -40,51 +34,58 @@ import pytz
 import github
 from github import Github
 
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
+disable_warnings(InsecureRequestWarning)
 
+hardcoded_var = {
+    TNB_NOSH = 5812948071/10**9, # Updated as of 10th July 2024
+    KNB_Number_of_Shares = 1215620404, # As of 19 June 2024 divestment
+    KNB_market_cap_since = 9.98*5.733331871,
+    TNB_Share_Price_Start_Year = 9.98, # as of 2/1/2024
+    K_Dividend = 0.61030538584, # RM'bn, as of 18/4/24, updated for recent div date
+    since_date = '2 Jan 2024'
+}
 
-
-
-st.set_page_config(page_title = "TNB Updates", page_icon="⚡")
-
+# set up page
+st.set_page_config(page_title = "TNB Updates", page_icon="⚡") # sets
 repo_owner = 'mirainsight'
 repo_name = 'TNB_Share_Price'
 file_path = 'TNB_Share_Price_2024_Streamlit.csv'
 token = st.secrets['Github_token']
-
 github = Github(token)
 repo = github.get_user(repo_owner).get_repo(repo_name)
-
 content = repo.get_contents(file_path)
 
+# cute cat gifs
 gifs = ["giphy.gif", "ysb.gif", "smol-illegally-smol-cat.gif", 
 "cool-fun.gif", "mcdo-cat-meme.gif", "unhand-me-wiggle-cat.gif",
 "quit.gif", "shocked-shocked-cat.gif", "santa-christmas.gif",
 "fat-cat-laser-eyes.gif"]
 
-n=random.randint(0,len(gifs)-1) 
+n=random.randint(0,len(gifs)-1) # randomizes the gifs that appear
 
-start = st.button('Calculate share price')
+start = st.button('Calculate share price') # button to press
 
-def calculate(start):
+def calculate(start, variables=hardcoded_var):
     if start:
-        #VIDEO_URL = "https://tenor.com/view/cat-zoning-out-cat-stare-black-cat-black-cat-tiktok-stare-gif-6568742496074847242"
-        st.image(gifs[n])
+        st.image(gifs[n]) # sets the gifs
+
+        #
         with st.status("Compiling info...", expanded=True) as status:
             if 'key' in st.session_state:
                 del st.session_state.key
         
             if 'key1' in st.session_state:
                 del st.session_state.key1
+
             
             st.write(f"Loading data from TNB wesbite...")
             start_time = t.time()
         
-        
+            # Set up web-scraping
+            
             # enable headless mode in Selenium
             options = Options()
+            
             # Chrome 104 Android User Agent
             custom_user_agent = "Mozilla/5.0 (Linux; Android 11; 100011886A Build/RP1A.200720.011) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.69 Safari/537.36"
             options.add_argument(f'user-agent={custom_user_agent}')
@@ -96,45 +97,14 @@ def calculate(start):
             options.add_argument("--start-maximized")
             options.add_argument("--window-size=1920x1080") #I added this
          
-            # service = Service()
-            # options = webdriver.ChromeOptions()
-            # driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
             service = Service()
-            # options = webdriver.ChromeOptions()
             driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
                 ),
                 options=options,
             )
         
-        
             st.write("Getting TNB data... it's only been %s seconds..." % round(t.time() - start_time, 0))
-            start_time1 = t.time()
-         
-            # url = "https://www.insage.com.my/ir/tenaga/priceticker.aspx"
-            # headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'}
-            
-            # session = requests.Session()
-            # retry = Retry(connect=3, backoff_factor=0.5)
-            # adapter = HTTPAdapter(max_retries=retry)
-            # session.mount('http://', adapter)
-            # session.mount('https://', adapter)
-            # data = session.get(url, verify=False, headers=headers).text
-        
-            # soup = BeautifulSoup(data, 'html.parser')
-        
-            # # Creating list with all tables
-            # tables = soup.find_all('table')
-            # TNB_share_price_curr = soup.find('table', class_='table table-hover mt10')
-            # TNB_curr_price = float(TNB_share_price_curr.tbody.find_all('td')[2].text.strip())
-            
-            
-            # TNB_share_price_prev = soup.find('div', class_='col-sm-6 pt10')
-            # TNB_prev_price = float(TNB_share_price_prev.find_all('th')[0].text.strip())
-            
-            # TNB_volume = soup.find('div', class_='col-sm-6 mt10')
-            # current_volume = TNB_volume.tbody.find_all('th')[0].text.strip()
-            # current_volume = int(current_volume.replace(',', ''))/(10**6)
-        
+            start_time1 = t.time()    
             
             driver.get('https://www.investing.com/equities/tenaga-nasional-bhd')
             wait_time = 1
@@ -237,23 +207,23 @@ def calculate(start):
                     text = '{:'+dp+'}%'
                     return(text.format(string))
         
-            TNB_NOSH = 5812948071/10**9 # Updated as of 10th July 2024
+            # Set up of formularised variables
+            TNB_NOSH = variables["TNB_NOSH"]
+            KNB_Number_of_Shares = variables["KNB_Number_of_Shares"]
+            KNB_market_cap_since = variables["KNB_market_cap_since"]
+            TNB_Share_Price_Start_Year = variables["TNB_Share_Price_Start_Year"]
+            K_Dividend = variables["K_Dividend"]
+            since_date = variables["since_date"]
+            
             TNB_market_cap = TNB_NOSH * TNB_curr_price
             TNB_market_cap_prev = TNB_NOSH * TNB_prev_price
-            KNB_Number_of_Shares = 1215620404 # As of 19 June 2024 divestment
             KNB_NOSH_formatted = str('{:,}'.format(KNB_Number_of_Shares)) 
             KNB_Share = (KNB_Number_of_Shares/(TNB_NOSH*10**9))/100
             KNB_Stake = KNB_Number_of_Shares/(TNB_NOSH*(10**9))
-            KNB_market_cap_since = 9.98*5.733331871
-            TNB_Share_Price_Start_Year = 9.98 # as of 2/1/2024
-            K_Dividend = 0.61030538584 # RM'bn, as of 18/4/24, updated for recent div date
             Gain_in_K_stake = (TNB_curr_price -TNB_Share_Price_Start_Year)*(KNB_Number_of_Shares/10**9)
             Gain_in_K_stake_inc_div = Gain_in_K_stake + K_Dividend
             KNB_Share_Absolute = 100*(TNB_market_cap*KNB_Share-TNB_market_cap_prev*KNB_Share) # Change in market share from prev close
-            K_Div_yield = ((K_Dividend*10**9)/(KNB_Number_of_Shares))/TNB_curr_price # Divided by pre-divestment number of shares since ex-date was before divestment
-        
-            since_date = '2 Jan 2024'
-        
+            K_Div_yield = ((K_Dividend*10**9)/(KNB_Number_of_Shares))/TNB_curr_price # Divided by pre-divestment number of shares since ex-date was before divestment        
         
             def is_time_between(begin_time, end_time, check_time=None):
                 # If check time is not given, default to current UTC time
