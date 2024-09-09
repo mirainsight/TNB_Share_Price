@@ -68,7 +68,7 @@ start = st.button('Calculate share price') # button to press
 def calculate(start, variables=hardcoded_var):
     if start:
         st.image(gifs[n]) # sets the gifs
-
+        
         #
         with st.status("Compiling info...", expanded=True) as status:
             if 'key' in st.session_state:
@@ -77,7 +77,8 @@ def calculate(start, variables=hardcoded_var):
             if 'key1' in st.session_state:
                 del st.session_state.key1
 
-            
+            progress_text = "TNB share price calculator loading. Please wait."
+            my_bar = st.progress(0, text=progress_text)
             st.write(f"Loading data from TNB wesbite...")
             start_time = t.time()
         
@@ -102,7 +103,8 @@ def calculate(start, variables=hardcoded_var):
                 ),
                 options=options,
             )
-        
+
+            my_bar.progress
             st.write("Getting TNB data... it's only been %s seconds..." % round(t.time() - start_time, 0))
             start_time1 = t.time()    
             
