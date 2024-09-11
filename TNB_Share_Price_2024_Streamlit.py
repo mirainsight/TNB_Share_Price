@@ -36,6 +36,7 @@ from github import Github
 
 disable_warnings(InsecureRequestWarning)
 
+# UPDATE NUMBERS HERE! 
 hardcoded_var = {
     "TNB_NOSH" : 5812948071/10**9, # Updated as of 10th July 2024
     "KNB_Number_of_Shares" : 1215620404, # As of 19 June 2024 divestment
