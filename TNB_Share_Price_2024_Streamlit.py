@@ -104,7 +104,6 @@ def calculate(start, variables=hardcoded_var):
                 options=options,
             )
 
-            my_bar.progress
             st.write("Getting TNB data... it's only been %s seconds..." % round(t.time() - start_time, 0))
             start_time1 = t.time()    
             
