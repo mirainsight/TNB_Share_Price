@@ -78,7 +78,7 @@ def calculate(start, variables=hardcoded_var):
                 del st.session_state.key1
 
             progress_text = "TNB share price calculator loading. Please wait."
-            my_bar = st.progress(0, text=progress_text)
+            #my_bar = st.progress(0, text=progress_text)
             st.write(f"Loading data from TNB wesbite...")
             start_time = t.time()
         
