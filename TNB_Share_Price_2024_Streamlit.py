@@ -113,18 +113,16 @@ def calculate(start, variables=hardcoded_var):
             error = True 
             iteration = 1
             while error:
-                st.write(f"Iteration 1: {iteration}")
+                st.write(f"Iteration {iteration} of 1")
 
                 try:
                     WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
                     error = False
-                    st.write(f"Success during iteration 2: {iteration}")
+                    st.write(f"Success during iteration {iteration} of 2")
                 except: 
                     wait_time += 1
                     iteration += 1
                 
-            st.write(f"iteration: {iteration}")
-            st.write(f"wait time: {wait_time}")
             TNB_share_price_curr = driver.find_element(By.CSS_SELECTOR, "[data-test='instrument-price-last']").text                                                      
             TNB_curr_price = float(TNB_share_price_curr)
         
