@@ -118,7 +118,7 @@ def calculate(start, variables=hardcoded_var):
                 try:
                     WebDriverWait(driver, wait_time).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[data-test='instrument-price-last']"))).click()
                     error = False
-                    st.write(f"Success during iteration {iteration} of 2")
+                    st.write(f"Success during iteration {iteration}")
                 except: 
                     wait_time += 1
                     iteration += 1
