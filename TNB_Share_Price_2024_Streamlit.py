@@ -77,7 +77,10 @@ def calculate(start, variables=hardcoded_var):
         
             if 'key1' in st.session_state:
                 del st.session_state.key1
-
+            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(13,00, tzinfo=pytz.timezone('Asia/Singapore')))):
+                st.header("⚠️ Website needs more time to be updated. Please try again at 1pm for most accurate data ⚠️")
+    if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17, 0, tzinfo=pytz.timezone('Asia/Singapore')), time(18,0, tzinfo=pytz.timezone('Asia/Singapore')))):
+                st.header("⚠️ Website needs more time to be updated. Please try again at 6pm for most accurate data ⚠️")
             progress_text = "TNB share price calculator loading. Please wait."
             #my_bar = st.progress(0, text=progress_text)
             st.write(f"Loading data from TNB wesbite...")
@@ -306,7 +309,7 @@ def calculate(start, variables=hardcoded_var):
             st.balloons()
             st.toast(f"Done calculation!: {text}", icon='✅' )
             st_copy_to_clipboard(text)
-            st.text_area("Key stats summary", text_summary)
+            # st.text_area("Key stats summary", text_summary)
             st.code(text)
 
 calculate(start)
@@ -317,7 +320,7 @@ if st.button("Show again"):
         # st_copy_to_clipboard('test')
         # st_copy_to_clipboard(st.session_state.key)
         st.toast(f"Done calculation!: {st.session_state.key}", icon='✅' )
-        st.text_area("Key stats summary", st.session_state.key1)
+        # st.text_area("Key stats summary", st.session_state.key1)
         st.code(st.session_state.key)
     except AttributeError: 
         st.write("Press calculate share price first!")
