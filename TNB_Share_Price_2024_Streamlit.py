@@ -110,15 +110,7 @@ def calculate(start, variables=hardcoded_var):
                 ),
                 options=options,
             )
-
-            # Checks of previous closing price was captured
-            calc_closing_data = False
-            df = pd.read_csv(r"TNB_Share_Price_2024_Streamlit.csv")        
-            yesterday_date = datetime.now(timezone('Asia/Singapore')) - BDay(4)
-            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(14,00, tzinfo=pytz.timezone('Asia/Singapore')))):
-                if pd.isnull(df.loc[df.index[df['Date'] == yesterday_date.strftime(format = '%d/%-m/%Y')].tolist()[0], "TNB_Share_Price_Close"]):
-                    calc_closing_data = True
-                    
+                 
             st.write("Getting TNB data... it's only been %s seconds..." % round(t.time() - start_time, 0))
             start_time1 = t.time()    
             
