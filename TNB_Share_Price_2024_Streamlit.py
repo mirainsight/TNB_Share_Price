@@ -78,14 +78,7 @@ def calculate(start, variables=hardcoded_var):
         
             if 'key1' in st.session_state:
                 del st.session_state.key1
-                
-            today_date = datetime.now(timezone('Asia/Singapore')).strftime(format = '%A')
-            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(13,00, tzinfo=pytz.timezone('Asia/Singapore')))):
-                st.header("⚠️ Website needs more time to be updated. Please try again at 1pm for most accurate data ⚠️")
-                
-            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17, 0, tzinfo=pytz.timezone('Asia/Singapore')), time(18,0, tzinfo=pytz.timezone('Asia/Singapore')))):
-                st.header("⚠️ Website needs more time to be updated. Please try again at 6pm for most accurate data ⚠️")
-                
+                              
             progress_text = "TNB share price calculator loading. Please wait."
             #my_bar = st.progress(0, text=progress_text)
             st.write(f"Loading data from TNB wesbite...")
@@ -283,6 +276,12 @@ def calculate(start, variables=hardcoded_var):
         
             today_date = datetime.now(timezone('Asia/Singapore')).strftime(format = '%A')
             yesterday_date = datetime.now(timezone('Asia/Singapore')) - BDay(4)
+            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(13,00, tzinfo=pytz.timezone('Asia/Singapore')))):
+                st.header("⚠️ Website needs more time to be updated. Please try again at 1pm for most accurate data ⚠️")
+                
+            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17, 0, tzinfo=pytz.timezone('Asia/Singapore')), time(18,0, tzinfo=pytz.timezone('Asia/Singapore')))):
+                st.header("⚠️ Website needs more time to be updated. Please try again at 6pm for most accurate data ⚠️")
+                
             if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(14,00, tzinfo=pytz.timezone('Asia/Singapore')))):
                 if pd.isnull(df.loc[df.index[df['Date'] == yesterday_date.strftime(format = '%d/%-m/%Y')].tolist()[0], "TNB_Share_Price_Close"]):
                     df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Share_Price_Close'] = TNB_share_price_prev
