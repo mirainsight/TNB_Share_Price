@@ -33,6 +33,7 @@ from pytz import timezone
 import pytz
 import github
 from github import Github
+from pandas.tseries.offsets import BDay
 
 disable_warnings(InsecureRequestWarning)
 
@@ -79,8 +80,10 @@ def calculate(start, variables=hardcoded_var):
                 del st.session_state.key1
             if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(13,00, tzinfo=pytz.timezone('Asia/Singapore')))):
                 st.header("⚠️ Website needs more time to be updated. Please try again at 1pm for most accurate data ⚠️")
-    if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17, 0, tzinfo=pytz.timezone('Asia/Singapore')), time(18,0, tzinfo=pytz.timezone('Asia/Singapore')))):
+                
+            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17, 0, tzinfo=pytz.timezone('Asia/Singapore')), time(18,0, tzinfo=pytz.timezone('Asia/Singapore')))):
                 st.header("⚠️ Website needs more time to be updated. Please try again at 6pm for most accurate data ⚠️")
+                
             progress_text = "TNB share price calculator loading. Please wait."
             #my_bar = st.progress(0, text=progress_text)
             st.write(f"Loading data from TNB wesbite...")
@@ -108,6 +111,14 @@ def calculate(start, variables=hardcoded_var):
                 options=options,
             )
 
+            # Checks of previous closing price was captured
+            calc_closing_data = False
+            df = pd.read_csv(r"TNB_Share_Price_2024_Streamlit.csv")        
+            yesterday_date = datetime.now(timezone('Asia/Singapore')) - BDay(4)
+            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(14,00, tzinfo=pytz.timezone('Asia/Singapore')))):
+                if pd.isnull(df.loc[df.index[df['Date'] == yesterday_date.strftime(format = '%d/%-m/%Y')].tolist()[0], "TNB_Share_Price_Close"]):
+                    calc_closing_data = True
+                    
             st.write("Getting TNB data... it's only been %s seconds..." % round(t.time() - start_time, 0))
             start_time1 = t.time()    
             
@@ -277,9 +288,14 @@ def calculate(start, variables=hardcoded_var):
                                     #'TNB_Share_Price_Close', 'TNB_Volume_Close', 'KLCI_Close', 'MSCI_Close'])
         
             today_date = datetime.now(timezone('Asia/Singapore')).strftime(format = '%A')
-        
-            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(14,00, tzinfo=pytz.timezone('Asia/Singapore')))): 
-                if not (df == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')).any().any():
+            yesterday_date = datetime.now(timezone('Asia/Singapore')) - BDay(4)
+            if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(14,00, tzinfo=pytz.timezone('Asia/Singapore')))):
+                if pd.isnull(df.loc[df.index[df['Date'] == yesterday_date.strftime(format = '%d/%-m/%Y')].tolist()[0], "TNB_Share_Price_Close"]):
+                    df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Share_Price_Close'] = TNB_share_price_prev
+                    #df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Volume_Close'] = current_volume
+                    df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'KLCI_Close'] = KLCI_prev_price
+                    df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'MSCI_Close'] = MSCI_prev_price
+                elif not (df == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')).any().any():
                     info  = {'Date':datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 
                             'TNB_Share_Price_Day':TNB_curr_price, 
                             'TNB_Volume_Day':current_volume,
