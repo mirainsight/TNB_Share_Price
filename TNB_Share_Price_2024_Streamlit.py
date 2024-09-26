@@ -78,6 +78,8 @@ def calculate(start, variables=hardcoded_var):
         
             if 'key1' in st.session_state:
                 del st.session_state.key1
+                
+            today_date = datetime.now(timezone('Asia/Singapore')).strftime(format = '%A')
             if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(13,00, tzinfo=pytz.timezone('Asia/Singapore')))):
                 st.header("⚠️ Website needs more time to be updated. Please try again at 1pm for most accurate data ⚠️")
                 
