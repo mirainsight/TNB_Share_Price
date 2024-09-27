@@ -34,13 +34,13 @@ st.write("Hi Power Geng!")
 df = pd.read_csv(r"TNB_Share_Price_Parameters.csv")
 
 with st.form("my_form"):
-    edited_df = st.data_editor(df)
+    edited_df = st.data_editor(df.transpose())
     comment = st.text_area("Comments here")
 
     # Every form must have a submit button.
     submitted = st.form_submit_button("Submit")
     if submitted:
-        st.table(edited_df)
+        st.table(edited_df.transpose)
         st.write(comment)
 
 
