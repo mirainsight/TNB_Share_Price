@@ -30,3 +30,5 @@ if not check_password():
 
 # Main Streamlit app starts here
 st.write("Hi Power Geng!")
+df = pd.read_csv(r"TNB_Share_Price_Parameters.csv")
+st.data_editor(df)
