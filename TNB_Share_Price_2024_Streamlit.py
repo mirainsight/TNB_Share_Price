@@ -64,8 +64,8 @@ gifs = ["giphy.gif", "ysb.gif", "smol-illegally-smol-cat.gif",
 "fat-cat-laser-eyes.gif"]
 
 n=random.randint(0,len(gifs)-1) # randomizes the gifs that appear
-
-def calculate(variables=hardcoded_var):
+start = st.button('Calculate share price', key="Start_calcs") # button to press
+def calculate(start, variables=hardcoded_var):
     st.image(gifs[n]) # sets the gifs
     
     #
@@ -318,8 +318,7 @@ def calculate(variables=hardcoded_var):
         # st.text_area("Key stats summary", text_summary)
         st.code(text)
             
-start = st.button('Calculate share price', key="Start_calcs") # button to press
-if start: calculate()
+calculate(start)
 
 
 if st.button("Show again", key="Show again"): 
