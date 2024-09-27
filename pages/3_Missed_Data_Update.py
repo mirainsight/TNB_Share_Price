@@ -41,7 +41,7 @@ st.write("Hi Power Geng!")
 df = pd.read_csv(r"TNB_Share_Price_2024_Streamlit.csv")
 
 with st.form("my_form"):
-    edited_df = st.data_editor(df)
+    edited_df = st.data_editor(df, num_rows="dynamic")
     comment = st.text_area("Put reason for change here")
 
     # Every form must have a submit button.
