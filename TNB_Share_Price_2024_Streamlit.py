@@ -38,6 +38,9 @@ from pandas.tseries.offsets import BDay
 disable_warnings(InsecureRequestWarning)
 
 # UPDATE NUMBERS HERE! 
+df1 = pd.read_csv(r"TNB_Share_Price_Parameters.csv").to_dict()
+st.write(df1["TNB_NOSH"])
+
 hardcoded_var = {
     "TNB_NOSH" : 5812948071/10**9, # Updated as of 10th July 2024
     "KNB_Number_of_Shares" : 1215620404, # As of 19 June 2024 divestment
