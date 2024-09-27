@@ -34,7 +34,7 @@ import pytz
 import github
 from github import Github
 from pandas.tseries.offsets import BDay
-
+from st_pages import add_page_title, get_nav_from_toml
 
 disable_warnings(InsecureRequestWarning)
 
