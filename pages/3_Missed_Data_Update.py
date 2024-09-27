@@ -38,7 +38,7 @@ if not check_password():
 
 # Main Streamlit app starts here
 st.write("Hi Power Geng!")
-df = pd.read_csv(r"TNB_Share_Price_Parameters.csv")
+df = pd.read_csv(r"TNB_Share_Price_2024_Streamlit.csv")
 df = df.transpose()
 
 with st.form("my_form"):
@@ -50,8 +50,8 @@ with st.form("my_form"):
     if submitted:
         st.table(edited_df)
         edited_df = edited_df.transpose()
-        edited_df.to_csv("TNB_Share_Price_Parameters.csv", index=False)
-        with open('TNB_Share_Price_Parameters.csv', 'rb') as f:
+        edited_df.to_csv("TNB_Share_Price_2024_Streamlit.csv", index=False)
+        with open('TNB_Share_Price_2024_Streamlit.csv', 'rb') as f:
             contents = f.read()
 
 
