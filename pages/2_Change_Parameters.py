@@ -47,7 +47,6 @@ with st.form("my_form"):
     submitted = st.form_submit_button("Submit")
     if submitted:
         st.table(edited_df)
-        st.write(comment)
         edited_df = edited_df.transpose()
         edited_df.to_csv("TNB_Share_Price_Parameters.csv", index=False)
         with open('TNB_Share_Price_Parameters.csv', 'rb') as f:
@@ -63,4 +62,6 @@ with st.form("my_form"):
         content = repo.get_contents(file_path)
         commit_message = f"{comment} as of {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')}"
         repo.update_file(file_path, commit_message, contents, content.sha)
+        
+        st.success('Saved!', icon="✅")
         
