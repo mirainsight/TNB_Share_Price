@@ -46,6 +46,16 @@ with st.form("my_form"):
     if submitted:
         st.table(edited_df)
         st.write(comment)
+        df.to_csv("TNB_Share_Price_Parameters.csv", index=False)
+        with open('TNB_Share_Price_Parameters.csv', 'rb') as f:
+            contents = f.read()
+        commit_message = f"{comment} as of {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')}"
 
 
-commit_message = f"{comment} as of {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')}"
+repo_owner = 'mirainsight'
+repo_name = 'TNB_Share_Price'
+file_path = 'TNB_Share_Price_Parameters.csv'
+token = st.secrets['Github_token']
+github = Github(token)
+repo = github.get_user(repo_owner).get_repo(repo_name)
+repo.update_file(file_path, commit_message, contents, content.sha)
