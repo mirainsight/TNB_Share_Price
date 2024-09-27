@@ -336,7 +336,7 @@ page_names_to_funcs = {
 demo_name = st.sidebar.selectbox("Share Price Calculator", page_names_to_funcs.keys())
 page_names_to_funcs[demo_name]()
 
-if st.button("Show again"): 
+if st.button("Show again", key="Show again"): 
     try:
         # st_copy_to_clipboard('test')
         # st_copy_to_clipboard(st.session_state.key)
