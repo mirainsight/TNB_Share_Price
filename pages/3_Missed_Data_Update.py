@@ -39,7 +39,6 @@ if not check_password():
 # Main Streamlit app starts here
 st.write("Hi Power Geng!")
 df = pd.read_csv(r"TNB_Share_Price_2024_Streamlit.csv")
-df = df.transpose()
 
 with st.form("my_form"):
     edited_df = st.data_editor(df)
