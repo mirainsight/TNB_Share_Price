@@ -72,7 +72,7 @@ gifs = ["giphy.gif", "ysb.gif", "smol-illegally-smol-cat.gif",
 n=random.randint(0,len(gifs)-1) # randomizes the gifs that appear
 
 def calculate(variables=hardcoded_var):
-    start = st.button('Calculate share price') # button to press
+    start = st.button('Calculate share price', key="Start_calcs") # button to press
     if start:
         st.image(gifs[n]) # sets the gifs
         
