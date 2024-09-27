@@ -32,4 +32,17 @@ if not check_password():
 # Main Streamlit app starts here
 st.write("Hi Power Geng!")
 df = pd.read_csv(r"TNB_Share_Price_Parameters.csv")
-st.data_editor(df)
+
+with st.form("my_form"):
+    edited_df = st.data_editor(df)
+    comment = st.text_area("Comments here")
+
+    # Every form must have a submit button.
+    submitted = st.form_submit_button("Submit")
+    if submitted:
+        st.table(edited_df)
+        st.write(comment)
+
+
+comment = st.text_area(
+commit_message = f"Update CSV file as of {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')}"
