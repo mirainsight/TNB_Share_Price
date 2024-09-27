@@ -10,3 +10,4 @@ seleniumbase
 webdriver-manager
 pytz
 PyGithub
+st-pages
