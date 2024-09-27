@@ -41,7 +41,7 @@ df = df.transpose()
 
 with st.form("my_form"):
     edited_df = st.data_editor(df)
-    comment = st.text_area("Comments here")
+    comment = st.text_area("Put reason for change here")
 
     # Every form must have a submit button.
     submitted = st.form_submit_button("Submit")
