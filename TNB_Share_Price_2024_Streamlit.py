@@ -40,7 +40,7 @@ st.set_page_config(page_title = "TNB Share Price Calculator", page_icon="⚡") #
 
 # UPDATE NUMBERS HERE! 
 df1 = pd.read_csv(r"TNB_Share_Price_Parameters.csv").transpose().to_dict()
-st.write(df1)
+df1 = df1["0"]
 st.write(df1["TNB_NOSH"])
 
 hardcoded_var = {
