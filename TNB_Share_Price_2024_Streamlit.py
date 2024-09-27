@@ -39,9 +39,10 @@ disable_warnings(InsecureRequestWarning)
 
 def change_param():
     st.write("hi")
-
+    return
 def update_data():
     st.write("yo")
+    return
 
 # UPDATE NUMBERS HERE! 
 hardcoded_var = {
