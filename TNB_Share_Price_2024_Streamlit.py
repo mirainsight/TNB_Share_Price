@@ -318,7 +318,7 @@ def calculate(start, variables=hardcoded_var):
         # st.text_area("Key stats summary", text_summary)
         st.code(text)
             
-calculate(start)
+if start: calculate()
 
 
 if st.button("Show again", key="Show again"): 
