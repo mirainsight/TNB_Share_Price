@@ -7,6 +7,8 @@ from pytz import timezone
 import github
 from github import Github
 
+st.set_page_config(page_title = "Change parameters", page_icon="🔋") # sets
+
 def check_password():
     """Returns `True` if the user had the correct password."""
 
