@@ -48,6 +48,7 @@ with st.form("my_form"):
     if submitted:
         st.table(edited_df)
         st.write(comment)
+        edited_df = edited_df.transpose()
         edited_df.to_csv("TNB_Share_Price_Parameters.csv", index=False)
         with open('TNB_Share_Price_Parameters.csv', 'rb') as f:
             contents = f.read()
