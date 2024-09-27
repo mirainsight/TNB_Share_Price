@@ -269,12 +269,7 @@ def calculate(variables=hardcoded_var):
     
         today_date = datetime.now(timezone('Asia/Singapore')).strftime(format = '%A')
         yesterday_date = datetime.now(timezone('Asia/Singapore')) - BDay(4)
-        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(13,00, tzinfo=pytz.timezone('Asia/Singapore')))):
-            st.header("⚠️ Website needs more time to be updated. Please try again at 1pm for most accurate data ⚠️")
-            
-        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17, 0, tzinfo=pytz.timezone('Asia/Singapore')), time(18,0, tzinfo=pytz.timezone('Asia/Singapore')))):
-            st.header("⚠️ Website needs more time to be updated. Please try again at 6pm for most accurate data ⚠️")
-            
+
         if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(14,00, tzinfo=pytz.timezone('Asia/Singapore')))):
             if pd.isnull(df.loc[df.index[df['Date'] == yesterday_date.strftime(format = '%d/%-m/%Y')].tolist()[0], "TNB_Share_Price_Close"]):
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Share_Price_Close'] = TNB_share_price_prev
@@ -303,6 +298,11 @@ def calculate(variables=hardcoded_var):
         repo.update_file(file_path, commit_message, contents, content.sha)
         
         st.write("Done! Only took %s seconds..." % round(t.time() - start_time, 0))
+        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(13,00, tzinfo=pytz.timezone('Asia/Singapore')))):
+            st.header("⚠️ Website needs more time to be updated. Please try again at 1pm for most accurate data ⚠️")
+            
+        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17, 0, tzinfo=pytz.timezone('Asia/Singapore')), time(18,0, tzinfo=pytz.timezone('Asia/Singapore')))):
+            st.header("⚠️ Website needs more time to be updated. Please try again at 6pm for most accurate data ⚠️")
     
         if 'key' not in st.session_state:
             st.session_state['key'] = text
