@@ -325,9 +325,8 @@ def calculate(variables=hardcoded_var):
             st_copy_to_clipboard(text)
             # st.text_area("Key stats summary", text_summary)
             st.code(text)
-
-calculate(start)
-
+            
+calculate()
 page_names_to_funcs = {
     "Share Price (Default)": calculate,
     "Change Parameters": change_param,
