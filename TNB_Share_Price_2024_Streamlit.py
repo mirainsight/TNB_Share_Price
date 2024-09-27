@@ -327,6 +327,7 @@ def calculate(variables=hardcoded_var):
             st.code(text)
             
 calculate()
+
 page_names_to_funcs = {
     "Share Price (Default)": calculate,
     "Change Parameters": change_param,
