@@ -36,6 +36,7 @@ from github import Github
 from pandas.tseries.offsets import BDay
 
 disable_warnings(InsecureRequestWarning)
+st.set_page_config(page_title = "TNB Share Price Calculator", page_icon="⚡") # sets
 
 # UPDATE NUMBERS HERE! 
 df1 = pd.read_csv(r"TNB_Share_Price_Parameters.csv").to_dict()
@@ -51,7 +52,6 @@ hardcoded_var = {
 }
 
 # set up page
-st.set_page_config(page_title = "TNB Share Price Calculator", page_icon="⚡") # sets
 repo_owner = 'mirainsight'
 repo_name = 'TNB_Share_Price'
 file_path = 'TNB_Share_Price_2024_Streamlit.csv'
