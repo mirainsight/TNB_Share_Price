@@ -37,6 +37,12 @@ from pandas.tseries.offsets import BDay
 
 disable_warnings(InsecureRequestWarning)
 
+def change_param():
+    st.write("hi")
+
+def update_data():
+    st.write("yo")
+
 # UPDATE NUMBERS HERE! 
 hardcoded_var = {
     "TNB_NOSH" : 5812948071/10**9, # Updated as of 10th July 2024
@@ -323,6 +329,13 @@ def calculate(start, variables=hardcoded_var):
 
 calculate(start)
 
+page_names_to_funcs = {
+    "Share Price (Default)": calculate,
+    "Change Parameters": change_param,
+    "Missed updating?": update_data
+}
+demo_name = st.sidebar.selectbox("Share Price Calculator", page_names_to_funcs.keys())
+page_names_to_funcs[demo_name]()
 
 if st.button("Show again"): 
     try:
