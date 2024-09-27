@@ -48,4 +48,4 @@ with st.form("my_form"):
         st.write(comment)
 
 
-commit_message = f"Update CSV file as of {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')}"
+commit_message = f"{comment} as of {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')}"
