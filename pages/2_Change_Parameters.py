@@ -4,6 +4,8 @@ import pandas as pd
 from datetime import datetime, time
 import time as t
 from pytz import timezone
+import github
+from github import Github
 
 def check_password():
     """Returns `True` if the user had the correct password."""
