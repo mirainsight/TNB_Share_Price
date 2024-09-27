@@ -48,7 +48,7 @@ with st.form("my_form"):
     submitted = st.form_submit_button("Submit")
     if submitted:
         st.table(edited_df)
-        edited_df = edited_df.transpose()
+        edited_df = edited_df
         edited_df.to_csv("TNB_Share_Price_2024_Streamlit.csv", index=False)
         with open('TNB_Share_Price_2024_Streamlit.csv', 'rb') as f:
             contents = f.read()
