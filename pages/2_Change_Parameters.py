@@ -59,8 +59,9 @@ with st.form("my_form"):
         token = st.secrets['Github_token']
         github = Github(token)
         repo = github.get_user(repo_owner).get_repo(repo_name)
-        repo.update_file(file_path, commit_message, contents, content.sha)
         commit_message = f"{comment} as of {datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')}"
+        repo.update_file(file_path, commit_message, contents, content.sha)
+        
 
 
 
