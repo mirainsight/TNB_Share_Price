@@ -34,17 +34,8 @@ import pytz
 import github
 from github import Github
 from pandas.tseries.offsets import BDay
-from st_pages import Page, show_pages, add_page_title
 
 
-# Specify what pages should be shown in the sidebar, and what their titles 
-# and icons should be
-show_pages(
-    [
-        Page("TNB_Share_Price_2024_Streamlit.py", "TNB Share Price Calculator", "⚡🔋🔌"),
-        #Page("other_pages/page2.py", "Page 2", ":books:"),
-    ]
-)
 disable_warnings(InsecureRequestWarning)
 
 # UPDATE NUMBERS HERE! 
