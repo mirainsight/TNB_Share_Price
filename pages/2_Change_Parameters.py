@@ -3,6 +3,7 @@ import hmac
 import pandas as pd
 from datetime import datetime, time
 import time as t
+from pytz import timezone
 
 def check_password():
     """Returns `True` if the user had the correct password."""
