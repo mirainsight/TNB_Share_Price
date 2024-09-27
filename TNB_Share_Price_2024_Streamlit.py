@@ -48,7 +48,7 @@ hardcoded_var = {
 }
 
 # set up page
-st.set_page_config(page_title = "TNB Share Price Calculator")#, page_icon="⚡🔋🔌") # sets
+st.set_page_config(page_title = "TNB Share Price Calculator", page_icon="⚡") # sets
 repo_owner = 'mirainsight'
 repo_name = 'TNB_Share_Price'
 file_path = 'TNB_Share_Price_2024_Streamlit.csv'
