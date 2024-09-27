@@ -322,7 +322,6 @@ start = st.button('Calculate share price', key="Start_calcs") # button to press
 if start: calculate()
 
 
-
 if st.button("Show again", key="Show again"): 
     try:
         # st_copy_to_clipboard('test')
