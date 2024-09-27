@@ -67,7 +67,6 @@ n=random.randint(0,len(gifs)-1) # randomizes the gifs that appear
 
 def calculate(variables=hardcoded_var):
     st.image(gifs[n]) # sets the gifs
-    st.set_page_config(page_title = "TNB Share Price Calculator", page_icon="⚡🔋🔌") # sets
     #
     with st.status("Compiling info...", expanded=True) as status:
         if 'key' in st.session_state:
