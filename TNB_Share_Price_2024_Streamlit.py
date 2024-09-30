@@ -205,7 +205,7 @@ def calculate(variables=hardcoded_var):
         KNB_Number_of_Shares = variables["KNB_Number_of_Shares"]
         TNB_Share_Price_Start_Year = variables["TNB_Share_Price_Start_Year"]
         KNB_market_cap_since = TNB_Share_Price_Start_Year * TNB_NOSH
-        K_Dividend = variables["K_Dividend"]/10**6
+        K_Dividend = variables["K_Dividend"]/10**9
         since_date = variables["since_date"]
         
         TNB_market_cap = TNB_NOSH * TNB_curr_price
