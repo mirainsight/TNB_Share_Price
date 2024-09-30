@@ -201,11 +201,11 @@ def calculate(variables=hardcoded_var):
                 return(text.format(string))
     
         # Set up of formularised variables
-        TNB_NOSH = variables["TNB_NOSH"]/10^9
-        KNB_Number_of_Shares = variables["KNB_Number_of_Shares"]/10^9
+        TNB_NOSH = variables["TNB_NOSH"]/10**9
+        KNB_Number_of_Shares = variables["KNB_Number_of_Shares"]/10**9
         TNB_Share_Price_Start_Year = variables["TNB_Share_Price_Start_Year"]
         KNB_market_cap_since = TNB_Share_Price_Start_Year * TNB_NOSH
-        K_Dividend = variables["K_Dividend"]/10^6
+        K_Dividend = variables["K_Dividend"]/10**6
         since_date = variables["since_date"]
         
         TNB_market_cap = TNB_NOSH * TNB_curr_price
