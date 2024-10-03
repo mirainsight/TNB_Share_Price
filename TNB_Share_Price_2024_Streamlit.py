@@ -309,7 +309,7 @@ def calculate(variables=hardcoded_var):
         if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(13,00, tzinfo=pytz.timezone('Asia/Singapore')))):
             st.header("⚠️ Website needs more time to be updated. Please try again at 1pm for most accurate data ⚠️")
             
-        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17, 0, tzinfo=pytz.timezone('Asia/Singapore')), time(18,0, tzinfo=pytz.timezone('Asia/Singapore')))):
+        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17, 0, tzinfo=pytz.timezone('Asia/Singapore')), time(23,59, tzinfo=pytz.timezone('Asia/Singapore')))):
             st.header("⚠️ Website needs more time to be updated. Please try again at 6pm for most accurate data ⚠️")
     
         if 'key' not in st.session_state:
