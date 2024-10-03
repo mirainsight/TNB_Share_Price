@@ -291,6 +291,7 @@ def calculate(variables=hardcoded_var):
                         'KLCI_Close':KLCI_curr_price,
                         'MSCI_Close':MSCI_curr_price}
                 df = pd.concat([df, pd.DataFrame(info, index=[0])], ignore_index=True)
+                st.write("Missing noon close data. Please manually update.")
             elif pd.isnull(df.loc[df.index[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')].tolist()[0], "TNB_Share_Price_Close"]):
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Share_Price_Close'] = TNB_curr_price
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Volume_Close'] = current_volume
