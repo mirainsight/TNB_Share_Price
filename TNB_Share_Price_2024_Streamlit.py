@@ -283,7 +283,7 @@ def calculate(variables=hardcoded_var):
                         'MSCI_Day':MSCI_curr_price}
                 df = pd.concat([df, pd.DataFrame(info, index=[0])], ignore_index=True)
     
-        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(17,0, tzinfo=pytz.timezone('Asia/Singapore')), time(23,59, tzinfo=pytz.timezone('Asia/Singapore')))):
+        if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(0,0, tzinfo=pytz.timezone('Asia/Singapore')), time(23,59, tzinfo=pytz.timezone('Asia/Singapore')))):
             if not (df == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')).any().any():
                 info  = {'Date':datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 
                         'TNB_Share_Price_Close':TNB_curr_price, 
