@@ -271,10 +271,12 @@ def calculate(variables=hardcoded_var):
 
         if (today_date != 'Saturday') and (today_date != 'Sunday') and (is_time_between(time(12, 30, tzinfo=pytz.timezone('Asia/Singapore')), time(16,59, tzinfo=pytz.timezone('Asia/Singapore')))):
             if pd.isnull(df.loc[df.index[df['Date'] == yesterday_date.strftime(format = '%d/%-m/%Y')].tolist()[0], "TNB_Share_Price_Day"]):
+                # fills previous day's info if it is blank 
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Share_Price_Close'] = TNB_share_price_prev
                 #df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Volume_Day'] = current_volume
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'KLCI_Close'] = KLCI_prev_price
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'MSCI_Close'] = MSCI_prev_price
+                
             elif not (df == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')).any().any():
                 info  = {'Date':datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 
                         'TNB_Share_Price_Day':TNB_curr_price, 
@@ -292,6 +294,7 @@ def calculate(variables=hardcoded_var):
                         'MSCI_Close':MSCI_curr_price}
                 df = pd.concat([df, pd.DataFrame(info, index=[0])], ignore_index=True)
                 st.write("Missing noon close data. Please manually update.")
+                
             elif pd.isnull(df.loc[df.index[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y')].tolist()[0], "TNB_Share_Price_Close"]):
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Share_Price_Close'] = TNB_curr_price
                 df.loc[df['Date'] == datetime.now(timezone('Asia/Singapore')).strftime(format = '%d/%-m/%Y'), 'TNB_Volume_Close'] = current_volume
